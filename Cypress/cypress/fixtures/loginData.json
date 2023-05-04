@@ -1,5 +1,5 @@
 {
   "email": "tuemail@example.com",
   "password": "tupassword",
-  "url": "http://localhost:2368/"
+  "baseUrl": "http://localhost:2368/"
 }
