@@ -1,25 +1,25 @@
 
 class LoginPage {
     visit() {
-      cy.visit('/login')
+      cy.visit('http://localhost:2368/ghost/#/signin')
     }
   
     fillEmail(value) {
-      const field = cy.get('#email')
+      const field = cy.get('#ember8')
       field.clear()
       field.type(value)
       return this
     }
   
     fillPassword(value) {
-      const field = cy.get('#password')
+      const field = cy.get('#ember10')
       field.clear()
       field.type(value)
       return this
     }
   
     submit() {
-      const button = cy.get('button[type="submit"]')
+      const button = cy.get('#ember12')
       button.click()
     }
   }
