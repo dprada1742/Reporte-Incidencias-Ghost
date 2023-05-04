@@ -1,7 +1,7 @@
 
 class LoginPage {
-    visit() {
-      cy.visit('http://localhost:2368/ghost/#/signin')
+    visit(baseUrl) {
+      cy.visit(baseUrl + 'ghost/#/signin')
     }
   
     fillEmail(value) {
