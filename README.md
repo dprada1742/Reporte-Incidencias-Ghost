@@ -8,10 +8,10 @@
 |Crear tag |	Crear tag nombre repetido | |
 |Crear tag |	Crear tag con descripción inválida	| |
 |Crear tag |	Crear tag sin nombre o sin slug	| |
-|Editar tag	| Lorem Ipsum | Daniela Prada|
-|Editar tag	| Lorem Ipsum | Daniela Prada|
-|Editar tag	| Lorem Ipsum | Daniela Prada|
-|Editar tag	| Lorem Ipsum | Daniela Prada|
+|Editar tag	| Editar tag datos validos | Daniela Prada|
+|Editar tag	| Editar tag nombre repetido | Daniela Prada|
+|Editar tag	| Editar tag con descripción inválida | Daniela Prada|
+|Editar tag	| Editar tag sin nombre o sin slug | Daniela Prada|
 |Crear post	| Lorem Ipsum | Daniel Buelvas|
 |Crear post	| Lorem Ipsum | Daniel Buelvas|
 |Crear post	| Lorem Ipsum | Daniel Buelvas|
