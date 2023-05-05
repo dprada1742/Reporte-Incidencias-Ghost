@@ -5,12 +5,15 @@ class TagsPage {
   }
 
   createNewTag() {
-    const buttonNewTag = cy.get(".gh-btn-green");
-    buttonNewTag.click();
+    cy.get('a').contains("New tag").click({ force: true });
   }
 
   getTagList() {
     return cy.get(".gh-tag-list-name");
+  }
+
+  getTagNameList() {
+    return cy.get("h3.gh-tag-list-name");
   }
 }
 
