@@ -2,12 +2,14 @@ import LoginPage from "../pages/LoginPage";
 import NewTagPage from "../pages/NewTagPage";
 import TagsPage from "../pages/TagsPage";
 
+import faker from 'faker';
+
 describe("Crear tag", () => {
   beforeEach(() => {
     cy.fixture("loginData").then((data) => {
-      const { email, password } = data;
+      const { email, password, baseUrl } = data;
       // Given: ingreso a la pagina y hago login
-      LoginPage.visit();
+      LoginPage.visit(baseUrl);
       LoginPage.fillEmail(email);
       LoginPage.fillPassword(password);
       LoginPage.submit();
@@ -25,15 +27,18 @@ describe("Crear tag", () => {
       TagsPage.createNewTag();
 
       // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
-      cy.url().should("eq", baseUrl + NewTagPage.url);
-
-      NewTagPage.fillTagName("Nuevo tag");
-      NewTagPage.fillTagSlug("nuevo-tag");
+ 
+      NewTagPage.fillTagName(faker.lorem.word());
+      NewTagPage.fillTagSlug(faker.lorem.slug());
+      NewTagPage.fillTagDescription(faker.lorem.sentence(5));
       NewTagPage.save();
 
       // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
 
       // Then: Encuentro el tag que cree
+
+      TagsPage.getTagList().contains(tagName).should('exist');
     });
   });
 });
