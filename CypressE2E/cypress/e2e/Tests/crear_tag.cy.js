@@ -24,6 +24,49 @@ describe("Crear tag", () => {
     });
   });
 
+  it("Crea dos tag con el mismo nombre", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
+      const tagName = faker.lorem.word();
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(faker.lorem.slug());
+      NewTagPage.fillTagDescription(faker.lorem.sentence(10));
+      NewTagPage.save();
+
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag con nombre repetido y oprimo el boton save
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(faker.lorem.slug());
+      NewTagPage.fillTagDescription(faker.lorem.sentence(10));
+      NewTagPage.save();
+
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+
+      // Then: Deberian tener dos tags con el mismo nombre
+      TagsPage.getTagNameList()
+        .filter(`:contains(${tagName})`)
+        .should("have.length", 2);
+    });
+  });
+
   it("Crea un nuevo tag con slug vacio", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
@@ -109,46 +152,5 @@ describe("Crear tag", () => {
     });
   });
 
-  it("Crea dos tag con el mismo nombre", () => {
-    cy.fixture("loginData").then((data) => {
-      const { baseUrl } = data;
 
-      // When: Voy a la seccion de tags
-      TagsPage.visit(baseUrl);
-
-      // When: Oprimo el boton New Tag
-      TagsPage.createNewTag();
-
-      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
-      const tagName = faker.lorem.word();
-      NewTagPage.fillTagName(tagName);
-      NewTagPage.fillTagSlug(faker.lorem.slug());
-      NewTagPage.fillTagDescription(faker.lorem.sentence(10));
-      NewTagPage.save();
-
-      cy.wait(1000);
-
-      // When: Me regreso a la seccion de Tags
-      TagsPage.visit(baseUrl);
-
-      // When: Oprimo el boton New Tag
-      TagsPage.createNewTag();
-
-      // When: Lleno todos los campos del formulario de new tag con nombre repetido y oprimo el boton save
-      NewTagPage.fillTagName(tagName);
-      NewTagPage.fillTagSlug(faker.lorem.slug());
-      NewTagPage.fillTagDescription(faker.lorem.sentence(10));
-      NewTagPage.save();
-
-      cy.wait(1000);
-
-      // When: Me regreso a la seccion de Tags
-      TagsPage.visit(baseUrl);
-
-      // Then: Deberian tener dos tags con el mismo nombre
-      TagsPage.getTagNameList
-        .filter(`:contains(${tagName})`)
-        .should("have.length", 2);
-    });
-  });
 });
