@@ -4,9 +4,16 @@ class PostsPage {
     cy.visit(baseUrl + this.url);
   }
 
-  createNewPost() {
-    const buttonNewTag = cy.get("#ember629");
-    buttonNewTag.click();
+  visitNewPost(baseUrl){
+    cy.visit(baseUrl+"ghost/#/editor/post/")
+  }
+
+  editPostByName(name){
+    cy.get("h3").contains(name).click()
+  }
+
+  getPostsList(){
+    return cy.get(".gh-content-entry-title")
   }
 }
 

@@ -21,7 +21,7 @@ class LoginPage {
     submit() {
       const button = cy.get('#ember12')
       button.click()
-      cy.wait(2000);
+      cy.wait(2000)
     }
   }
   
