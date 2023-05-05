@@ -20,10 +20,10 @@
 |Editar post| Lorem Ipsum | Sebastian Ulloa|
 |Editar post| Lorem Ipsum | Sebastian Ulloa|
 |Editar post| Lorem Ipsum | Sebastian Ulloa|
-|Editar Contraseña de usuario| Lorem Ipsum | Juan David Torres|
-|Editar Contraseña de usuario| Lorem Ipsum | Juan David Torres|
-|Editar Contraseña de usuario| Lorem Ipsum | Juan David Torres|
-|Editar Contraseña de usuario| Lorem Ipsum | Juan David Torres|
+|Editar Contraseña de usuario| Editar Contraseña válida | Juan David Torres|
+|Editar Contraseña de usuario| Editar Contraseña muy corta | Juan David Torres|
+|Editar Contraseña de usuario| Editar Contraseña en blanco | Juan David Torres|
+|Editar Contraseña de usuario| Editar Contraseña insegura | Juan David Torres|
 
 # Reporte-Incidencias-Ghost:
 [Wiki documentación Entrega Semana 04](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki)
