@@ -2,7 +2,6 @@
 class LoginPage {
     visit(baseUrl) {
       cy.visit(baseUrl + 'ghost/#/signin')
-      cy.wait(1000)
     }
   
     fillEmail(value) {
@@ -22,6 +21,7 @@ class LoginPage {
     submit() {
       const button = cy.get('#ember12')
       button.click()
+      cy.wait(2000)
     }
   }
   
