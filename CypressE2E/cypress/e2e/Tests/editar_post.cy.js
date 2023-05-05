@@ -3,7 +3,7 @@ import PostEditPage from "../pages/PostEditPage";
 import PostsPage from "../pages/PostsPage";
 import Sidebar from "../pages/Sidebar";
 
-import { faker } from '@faker-js/faker';
+import { CompanyModule, faker } from '@faker-js/faker';
 
 describe("Editar Post", () => {
   beforeEach(() => {
@@ -30,14 +30,14 @@ describe("Editar Post", () => {
 
       // When: creo un nuevo post
       PostsPage.visitNewPost(baseUrl);
-      
+
       let postName = faker.lorem.words(3);
       let titleField = PostEditPage.getPostTitle()
       titleField.clear()
       titleField.type(postName)
 
       PostEditPage.getPostContent().click()
-      
+
       // And: edito el post que cree
       PostsPage.visit(baseUrl)
       PostsPage.editPostByName(postName)
@@ -51,7 +51,7 @@ describe("Editar Post", () => {
 
       // Then: Encuentro el tag que cree
       PostsPage.visit(baseUrl)
-      let postsList= PostsPage.getPostsList()
+      let postsList = PostsPage.getPostsList()
       postsList.should('contain', newPostName)
       postsList.should('not.contain', postName)
     });
@@ -63,7 +63,7 @@ describe("Editar Post", () => {
 
       // When: creo un nuevo post
       PostsPage.visitNewPost(baseUrl);
-      
+
       let postName1 = faker.lorem.words(3);
       let titleField = PostEditPage.getPostTitle()
       titleField.clear()
@@ -83,7 +83,7 @@ describe("Editar Post", () => {
       titleField.type(postName2)
 
       PostEditPage.getPostContent().click()
-      
+
       // And: edito el primer post, colocandole el nombre del segundo
       PostsPage.visit(baseUrl)
       PostsPage.editPostByName(postName1)
@@ -96,7 +96,7 @@ describe("Editar Post", () => {
 
       // Then: Encuentro dos posts con el mismo nombre
       PostsPage.visit(baseUrl)
-      let postsList= PostsPage.getPostsList()
+      let postsList = PostsPage.getPostsList()
       postsList.filter(`:contains(${postName2})`).should("have.length", 2)
     });
   });
@@ -107,14 +107,14 @@ describe("Editar Post", () => {
 
       // When: creo un nuevo post
       PostsPage.visitNewPost(baseUrl);
-      
+
       let postName = faker.lorem.words(3);
       let titleField = PostEditPage.getPostTitle()
       titleField.clear()
       titleField.type(postName)
 
       PostEditPage.getPostContent().click()
-      
+
       // And: edito el post que cree
       PostsPage.visit(baseUrl)
       PostsPage.editPostByName(postName)
@@ -136,9 +136,58 @@ describe("Editar Post", () => {
       // And: verifico que el tag este guardado
       PostsPage.editPostByName(postName)
       PostEditPage.clickPostSettings()
-      
+
       // Then: Encuentro el tag que cree
       PostEditPage.getTagValue().should('contain', tagName)
+    });
+  });
+
+  it("Crear y editar la URL de un post", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: creo un nuevo post
+      PostsPage.visitNewPost(baseUrl);
+
+      let postName = faker.lorem.words(1);
+      let titleField = PostEditPage.getPostTitle()
+      titleField.clear()
+      titleField.type(postName)
+
+      PostEditPage.getPostContent().click()
+
+      // And: edito el post que cree
+      PostsPage.visit(baseUrl)
+      PostsPage.editPostByName(postName)
+
+      // And: edito la url del post
+      PostEditPage.clickPostSettings()
+
+      let newUrl = faker.lorem.words(1);
+      let postUrl = PostEditPage.getPostUrl()
+
+      postUrl.click()
+      postUrl.clear()
+      postUrl.type(newUrl)
+
+      PostEditPage.clickClosePostSettings()
+      PostEditPage.saveChanges()
+      PostEditPage.clickPublishOptions()
+      PostEditPage.clickPublishButton()
+      PostEditPage.clickConfirmPublishButton()
+
+      cy.wait(1000)
+      Cypress.on('uncaught:exception', (err, runnable) => {
+        if (err.message.includes('$ is not defined')) {
+          // returning false here prevents Cypress from failing the test
+          return false
+        }
+        // on any other error, Cypress will fail the test
+      })
+
+      // Then: Intento ingresar a la pagina con la nueva URL
+      cy.visit(baseUrl + newUrl + "/")
+      cy.contains(postName).should('exist')
     });
   });
 });

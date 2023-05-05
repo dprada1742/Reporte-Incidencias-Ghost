@@ -15,6 +15,10 @@ class PostsPage {
     return cy.get('li.tag-token')
   }
 
+  getPostUrl(){
+    return cy.get('.post-setting-slug')
+  }
+
   clickPublishOptions() {
     cy.get("div.gh-publishmenu").click()
   }
