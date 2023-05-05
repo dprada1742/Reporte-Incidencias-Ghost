@@ -2,7 +2,6 @@ import LoginPage from "../pages/LoginPage";
 import NewTagPage from "../pages/NewTagPage";
 import TagsPage from "../pages/TagsPage";
 
-import faker from 'faker';
 
 describe("Crear tag", () => {
   beforeEach(() => {
@@ -20,6 +19,8 @@ describe("Crear tag", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
 
+      cy.wait(5000);
+
       // When: Voy a la seccion de tags
       TagsPage.visit(baseUrl);
 
@@ -28,10 +29,13 @@ describe("Crear tag", () => {
 
       // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
  
-      NewTagPage.fillTagName(faker.lorem.word());
-      NewTagPage.fillTagSlug(faker.lorem.slug());
-      NewTagPage.fillTagDescription(faker.lorem.sentence(5));
+      const tagName = "Automatic Test Name"
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug("automaticSlug");
+      NewTagPage.fillTagDescription("Short Description");
       NewTagPage.save();
+
+      cy.wait(2000);
 
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);

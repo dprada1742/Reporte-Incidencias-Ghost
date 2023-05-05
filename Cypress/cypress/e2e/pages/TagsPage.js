@@ -5,7 +5,7 @@ class TagsPage {
   }
 
   createNewTag() {
-    const buttonNewTag = cy.get("#ember97");
+    const buttonNewTag = cy.get(".gh-btn-green");
     buttonNewTag.click();
   }
 

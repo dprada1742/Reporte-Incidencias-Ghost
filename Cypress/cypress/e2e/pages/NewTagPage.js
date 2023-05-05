@@ -5,28 +5,28 @@ class NewTagsPage {
   }
 
   save() {
-    const buttonNewTag = cy.get("#ember111");
-    buttonNewTag.click();
+    const buttonSave = cy.get('.gh-btn-blue');
+    buttonSave.click({ force: true });
   }
 
   fillTagName(value) {
     const field = cy.get('#tag-name')
     field.clear()
-    field.type(value)
+    field.type(value, { force: true })
     return this
   }
 
   fillTagSlug(value) {
     const field = cy.get('#tag-slug')
     field.clear()
-    field.type(value)
+    field.type(value, { force: true })
     return this
   }
 
   fillTagDescription(value) {
     const field = cy.get('#tag-description')
     field.clear()
-    field.type(value)
+    field.type(value, { force: true })
     return this
   }
 }
