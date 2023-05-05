@@ -12,10 +12,10 @@
 |Editar tag	| Editar tag nombre repetido | Daniela Prada|
 |Editar tag	| Editar tag con descripción inválida | Daniela Prada|
 |Editar tag	| Editar tag sin nombre o sin slug | Daniela Prada|
-|Crear post	| Lorem Ipsum | Daniel Buelvas|
-|Crear post	| Lorem Ipsum | Daniel Buelvas|
-|Crear post	| Lorem Ipsum | Daniel Buelvas|
-|Crear post	| Lorem Ipsum | Daniel Buelvas|
+|Crear post	| Crear Nuevo Post | Daniel Buelvas|
+|Crear post	| Crear Nuevo Post con Título vacío | Daniel Buelvas|
+|Crear post	| Crear Nuevo Post con Contenido vacío | Daniel Buelvas|
+|Crear post	| Crear Nuevo Post y agendarlo para su publicación | Daniel Buelvas|
 |Editar post| Lorem Ipsum | Sebastian Ulloa|
 |Editar post| Lorem Ipsum | Sebastian Ulloa|
 |Editar post| Lorem Ipsum | Sebastian Ulloa|
