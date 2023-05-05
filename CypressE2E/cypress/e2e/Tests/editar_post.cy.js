@@ -3,12 +3,14 @@ import NewTagPage from "../pages/NewTagPage";
 import Sidebar from "../pages/Sidebar";
 import TagsPage from "../pages/TagsPage";
 
+import { faker } from '@faker-js/faker';
+
 describe("Editar Post", () => {
   beforeEach(() => {
     cy.fixture("loginData").then((data) => {
-      const { email, password } = data;
+      const { email, password, baseUrl } = data;
       // Given: ingreso a la pagina y hago login
-      LoginPage.visit();
+      LoginPage.visit(baseUrl);
       LoginPage.fillEmail(email);
       LoginPage.fillPassword(password);
       LoginPage.submit();

@@ -2,6 +2,7 @@
 class LoginPage {
     visit(baseUrl) {
       cy.visit(baseUrl + 'ghost/#/signin')
+      cy.wait(1000)
     }
   
     fillEmail(value) {
