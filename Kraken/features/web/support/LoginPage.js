@@ -19,7 +19,7 @@ class LoginPage {
   
     async submit() {
       const submitButton = await this.driver.$('#ember12');
-      await submitButton.click();
+      return await submitButton.click();
     }
   }
   
