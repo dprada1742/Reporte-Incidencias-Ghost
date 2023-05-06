@@ -1,10 +1,13 @@
-# Pruebas E2E
+## Pruebas E2E
+### Semana 05
+* [Pros/Contras Cypress](análisis-cypress)
+* [Pros/Contras Kraken](análisis-kraken)
 
-## Pasos para ejecutar pruebas creadas en Cypress
+### Pasos para ejecutar pruebas creadas en Cypress
 
-## Pasos para ejecutar pruebas creadas en Kraken
+### Pasos para ejecutar pruebas creadas en Kraken
 
-## Funcionalidades y escenarios de prueba
+### Funcionalidades y escenarios de prueba
 
 |Funcionalidad |	Escenario | Tester |
 |--------------|:------------:|---------------------:|
