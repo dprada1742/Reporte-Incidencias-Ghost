@@ -18,9 +18,7 @@ Given('I log in', async function () {
     await ownerButton.waitForExist({ timeout: 5000 });
     await ownerButton.click();
     let oldPasswordField = await this.driver.$('#user-password-old');
-    return await oldPasswordField.click();
-    
-    
+    return await oldPasswordField.click();    
   });
 
   When('I fill the old password with {string}', async function (text) {     
