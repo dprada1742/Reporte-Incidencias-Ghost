@@ -14,6 +14,10 @@ class NewTagsPage {
     buttonLeave.contains("Leave").click({ force: true });
   }
 
+  getSlugField(){
+    return cy.get("#tag-slug");
+  }
+
   fillTagName(value) {
     const field = cy.get("#tag-name");
     field.clear();
