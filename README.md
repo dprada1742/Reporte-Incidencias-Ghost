@@ -1,7 +1,7 @@
 ## Pruebas E2E
 ### Semana 05
-* [Pros/Contras Cypress](análisis-cypress)
-* [Pros/Contras Kraken](análisis-kraken)
+* [Pros/Contras Cypress](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki/an%C3%A1lisis-cypress)
+* [Pros/Contras Kraken](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki/an%C3%A1lisis-kraken)
 
 ### Pasos para ejecutar pruebas creadas en Cypress
 
