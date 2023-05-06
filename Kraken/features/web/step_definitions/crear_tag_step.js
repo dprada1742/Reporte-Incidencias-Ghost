@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 
 const baseUrl = "http://localhost:2368/";
 
-Given('I log in', async function () {
+Given('I log into ghost', async function () {
     let loginPage = new LoginPage(this.driver);
     await loginPage.visit(baseUrl);
     await loginPage.fillEmail("testemail@email.com");

@@ -24,4 +24,4 @@ class TagsPage {
   }
 }
 
-export default new TagsPage();
+module.exports = TagsPage;

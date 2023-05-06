@@ -59,4 +59,4 @@ class NewTagsPage {
   
   }
   
-  module.exports = new NewTagsPage();
+  module.exports = NewTagsPage;
