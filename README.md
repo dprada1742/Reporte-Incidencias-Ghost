@@ -1,5 +1,9 @@
 # Pruebas E2E
 
+## Pasos para ejecutar pruebas creadas en Cypress
+
+## Pasos para ejecutar pruebas creadas en Kraken
+
 ## Funcionalidades y escenarios de prueba
 
 |Funcionalidad |	Escenario | Tester |
