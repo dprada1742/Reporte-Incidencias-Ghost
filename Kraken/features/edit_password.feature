@@ -2,8 +2,7 @@ Feature: Editar Contraseña
 
     @user5 @web
     Scenario: Editar Contraseña válida
-        Given I navigate to page "http://localhost:2368/ghost/"
-        And I log in
+        Given I log into ghost
         And I wait for 1 seconds        
         And I go to owner page
         And I wait for 1 seconds
@@ -15,8 +14,7 @@ Feature: Editar Contraseña
     
     @user6 @web
     Scenario: Editar Contraseña muy corta
-        Given I navigate to page "http://localhost:2368/ghost/"
-        And I log in
+        Given I log into ghost
         And I wait for 1 seconds        
         And I go to owner page
         And I wait for 1 seconds
@@ -28,8 +26,7 @@ Feature: Editar Contraseña
     
     @user7 @web
     Scenario: Editar Contraseña en blanco
-        Given I navigate to page "http://localhost:2368/ghost/"
-        And I log in
+        Given I log into ghost
         And I wait for 1 seconds        
         And I go to owner page
         And I wait for 1 seconds
@@ -41,8 +38,7 @@ Feature: Editar Contraseña
     
     @user8 @web
     Scenario: Editar Contraseña insegura
-        Given I navigate to page "http://localhost:2368/ghost/"
-        And I log in
+        Given I log into ghost
         And I wait for 3 seconds        
         And I go to owner page
         And I wait for 1 seconds
