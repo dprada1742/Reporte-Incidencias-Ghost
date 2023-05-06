@@ -1,62 +1,55 @@
 class NewTagsPage {
-    url = "ghost/#/tags/new";
-    visit(baseUrl) {
-      this.driver.visit(baseUrl + this.url);
-    }
-  
-    save() {
-      const buttonSave = this.driver.$("button");
-      buttonSave.getText().then((text) => {
-        if (text.includes("Save")) {
-          buttonSave.click();
-        }
-      });
-    }
-  
-    leave() {
-      const buttonLeave = this.driver.$("button");
-      buttonLeave.getText().then((text) => {
-        if (text.includes("Leave")) {
-          buttonLeave.click();
-        }
-      });
-    }
-  
-    getSlugField(){
-      return this.driver.$("#tag-slug");
-    }
-  
-    fillTagName(value) {
-      const field = this.driver.$("#tag-name");
-      field.clearValue();
-      field.setValue(value);
-      return this;
-    }
-  
-    fillTagSlug(value) {
-      const field = this.driver.$("#tag-slug");
-      field.clearValue();
-      field.setValue(value);
-      return this;
-    }
-  
-    clearSlug() {
-      const field = this.driver.$("#tag-slug");
-      field.clearValue();
-      return this;
-    }
-  
-    fillTagDescription(value) {
-      const field = this.driver.$("#tag-description");
-      field.clearValue();
-      field.setValue(value);
-      return this;
-    }
-  
-    GetTagDescription() {
-      return this.driver.$("#tag-description");
-    }
-  
+
+  constructor(driver) {
+    this.driver = driver;
   }
-  
-  module.exports = NewTagsPage;
+
+  async save() {
+    const saveButton = await this.driver.$('//span[contains(.,"Save")]');
+    await saveButton.click();
+  }
+
+  async leave() {
+    const saveButton = await this.driver.$('//span[contains(.,"Leave")]');
+    await saveButton.click();
+  }
+
+  async getSlugField() {
+    return this.driver.$("#tag-slug");
+  }
+
+  async fillTagName(value) {
+    const tagNameInput = await this.driver.$("#tag-name");
+    await tagNameInput.clearValue();
+    await tagNameInput.addValue(value)
+    return this;
+  }
+
+  async fillTagSlug(value) {
+    const field = this.driver.$("#tag-slug");
+    await field.clearValue();
+    await field.setValue(value);
+    return this;
+  }
+
+  async clearSlug() {
+    const field = this.driver.$("#tag-slug");
+    await field.clearValue();
+    return this;
+  }
+
+  async fillTagDescription(value) {
+    const field = this.driver.$("#tag-description");
+    await field.clearValue();
+    await field.setValue(value);
+    return this;
+  }
+
+  async GetTagDescription() {
+    const field = await this.driver.$("#tag-description");
+    return await field.getValue()
+  }
+
+}
+
+module.exports = NewTagsPage;

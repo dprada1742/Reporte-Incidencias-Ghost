@@ -1,6 +1,6 @@
 Feature: Editar Contraseña
 
-    @user1 @web
+    @user5 @web
     Scenario: Editar Contraseña válida
         Given I navigate to page "http://localhost:2368/ghost/"
         And I log in
@@ -13,7 +13,7 @@ Feature: Editar Contraseña
         And I wait for 1 seconds
         Then It must says "Password updated"
     
-    @user2 @web
+    @user6 @web
     Scenario: Editar Contraseña muy corta
         Given I navigate to page "http://localhost:2368/ghost/"
         And I log in
@@ -26,7 +26,7 @@ Feature: Editar Contraseña
         And I wait for 2 seconds
         Then Error must says "Password must be at least 10 characters long"   
     
-    @user3 @web
+    @user7 @web
     Scenario: Editar Contraseña en blanco
         Given I navigate to page "http://localhost:2368/ghost/"
         And I log in
@@ -39,7 +39,7 @@ Feature: Editar Contraseña
         And I wait for 2 seconds
         Then Error must says "Sorry, passwords can't be blank"
     
-    @user4 @web
+    @user8 @web
     Scenario: Editar Contraseña insegura
         Given I navigate to page "http://localhost:2368/ghost/"
         And I log in

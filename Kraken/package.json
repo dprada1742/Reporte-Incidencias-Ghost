@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "kraken-node": "^1.0.24"
   },
   "devDependencies": {
