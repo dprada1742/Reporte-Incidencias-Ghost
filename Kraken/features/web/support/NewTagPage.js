@@ -15,7 +15,7 @@ class NewTagsPage {
   }
 
   async getSlugField() {
-    return this.driver.$("#tag-slug");
+    return await this.driver.$("#tag-slug");
   }
 
   async fillTagName(value) {

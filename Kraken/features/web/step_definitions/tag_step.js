@@ -56,6 +56,11 @@ When('I press the button Leave', async function () {
   await newTagPage.leave();
 });
 
+When('I clear the slug', async function () {
+  let newTagPage = new NewTagsPage(this.driver);
+  await newTagPage.clearSlug();
+});
+
 Then('I should have two tags with the same name {kraken-string}', async function (tagName) {
   let tagPage = new TagsPage(this.driver);
   const tagList = await tagPage.getTagNameList();
@@ -90,6 +95,13 @@ Then('I should validate the description {kraken-string}', async function (tagNam
   let newTagPage = new NewTagsPage(this.driver);
   let tagText = await newTagPage.GetTagDescription()
   expect(tagText).to.equal(tagName);
+});
+
+Then('I should validate the slug is not empty', async function () {
+  let newTagPage = new NewTagsPage(this.driver);
+  let slugField = await newTagPage.getSlugField()
+  let slugValue = await slugField.getValue()
+  expect(slugValue).not.to.be.empty;
 });
 
 function generateRandomString(length) {
