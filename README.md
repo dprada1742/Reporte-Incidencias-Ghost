@@ -4,14 +4,14 @@
 
 |Funcionalidad |	Escenario | Tester |
 |--------------|:------------:|---------------------:|
-|Crear tag |	Crear tag datos válidos	| |
-|Crear tag |	Crear tag nombre repetido | |
-|Crear tag |	Crear tag con descripción inválida	| |
-|Crear tag |	Crear tag sin nombre o sin slug	| |
-|Editar tag	| Editar tag datos validos | Daniela Prada|
-|Editar tag	| Editar tag nombre repetido | Daniela Prada|
+|Crear tag |	Crear tag datos válidos	| Daniela Prada|
+|Crear tag |	Crear tag nombre repetido | Daniela Prada|
+|Crear tag |	Crear tag con descripción inválida	| Daniela Prada|
+|Crear tag |	Crear tag sin nombre o sin slug	| Daniela Prada|
+|Editar tag	| Editar tag datos validos | Daniel Buelvas|
+|Editar tag	| Editar tag nombre repetido | Juan David Torres|
 |Editar tag	| Editar tag con descripción inválida | Daniela Prada|
-|Editar tag	| Editar tag sin nombre o sin slug | Daniela Prada|
+|Editar tag	| Editar tag sin nombre o sin slug | Sebastian Ulloa|
 |Crear post	| Crear Nuevo Post | Daniel Buelvas|
 |Crear post	| Crear Nuevo Post con Título vacío | Daniel Buelvas|
 |Crear post	| Crear Nuevo Post con Contenido vacío | Daniel Buelvas|
