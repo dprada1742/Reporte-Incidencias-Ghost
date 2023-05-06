@@ -25,6 +25,93 @@ describe("Editar tag", () => {
     });
   });
 
+  it("Editar tag datos validos", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag oprimo el boton save
+      const tagName = faker.lorem.word();
+      const descripcion = faker.lorem.sentence(10);
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(faker.lorem.slug());
+      NewTagPage.fillTagDescription(descripcion);
+      NewTagPage.save();
+
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+
+      // When: Selecciono el tag que acabo de crear
+      TagsPage.editTagByName(tagName);
+
+      //When edito el nombre del tag con valor valido y guardo
+      const newTagName = faker.lorem.word();
+      NewTagPage.fillTagName(newTagName);
+      NewTagPage.save();
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+
+      // When: Selecciono el tag que acabo de editar
+      TagsPage.editTagByName(newTagName);
+
+      // Then: La descripcion no debio cambiar
+      NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
+    });
+  });
+
+  it("Editar tag nombre repetido", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag oprimo el boton save
+      const tagName = faker.lorem.word();
+      const descripcion = faker.lorem.sentence(10);
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(faker.lorem.slug());
+      NewTagPage.fillTagDescription(descripcion);
+      NewTagPage.save();
+
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+
+      // When: Selecciono el tag que acabo de crear
+      TagsPage.editTagByName(tagName);
+
+      //When edito el nombre del tag con valor valido y guardo
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.save();
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+
+      // When: Selecciono el tag que acabo de editar
+      TagsPage.editTagByName(tagName);
+
+      // Then: La descripcion no debio cambiar
+      NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
+    });
+  });
+
+
+
   it("Editar un nuevo tag con una descripcion con tamaño mayor a 500", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
@@ -68,6 +155,7 @@ describe("Editar tag", () => {
       NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
     });
   });
+
   it("Crea un nuevo tag y lo edita con slug vacio", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
