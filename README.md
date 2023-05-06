@@ -16,10 +16,10 @@
 |Crear post	| Crear Nuevo Post con Título vacío | Daniel Buelvas|
 |Crear post	| Crear Nuevo Post con Contenido vacío | Daniel Buelvas|
 |Crear post	| Crear Nuevo Post y agendarlo para su publicación | Daniel Buelvas|
-|Editar post| Lorem Ipsum | Sebastian Ulloa|
-|Editar post| Lorem Ipsum | Sebastian Ulloa|
-|Editar post| Lorem Ipsum | Sebastian Ulloa|
-|Editar post| Lorem Ipsum | Sebastian Ulloa|
+|Editar post| Editar post datos validos | Sebastian Ulloa|
+|Editar post| Editar post nombre repetido| Sebastian Ulloa|
+|Editar post| Editar post añadir tag existente| Sebastian Ulloa|
+|Editar post| Editar post modificar URL | Sebastian Ulloa|
 |Editar Contraseña de usuario| Editar Contraseña válida | Juan David Torres|
 |Editar Contraseña de usuario| Editar Contraseña muy corta | Juan David Torres|
 |Editar Contraseña de usuario| Editar Contraseña en blanco | Juan David Torres|
