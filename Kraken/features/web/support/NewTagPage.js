@@ -19,7 +19,8 @@ class NewTagsPage {
   }
 
   async fillTagName(value) {
-    const tagNameInput = await this.driver.$("#tag-name");
+    const tagNameInput = await this.driver.$("#tag-name");    
+    await tagNameInput.waitForExist({ timeout: 5000 });
     await tagNameInput.clearValue();
     await tagNameInput.addValue(value)
     return this;
@@ -47,6 +48,11 @@ class NewTagsPage {
 
   async GetTagDescription() {
     const field = await this.driver.$("#tag-description");
+    return await field.getValue()
+  }
+
+  async GetTagName() {
+    const field = await this.driver.$("#tag-name");
     return await field.getValue()
   }
 
