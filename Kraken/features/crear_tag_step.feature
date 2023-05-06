@@ -18,7 +18,7 @@ Feature: Crear Tag
         Then I should have two tags with the same name
         And I log out
 
-    @user1 @web
+    @user2 @web
     Scenario: Crea un nuevo tag con slug vacio
         Given I navigate to page "http://localhost:2368/ghost/"
         And I log in
@@ -31,7 +31,7 @@ Feature: Crear Tag
         Then The new tag should be present
         And I log out
 
-    @user1 @web
+    @user3 @web
     Scenario: Crea un nuevo tag con una descripcion con tamaño mayor a 500
         Given I navigate to page "http://localhost:2368/ghost/"
         And I log in
@@ -45,6 +45,7 @@ Feature: Crear Tag
         Then The new tag should not be present
         And I log out
 
+    @user4 @web
     Scenario: Crea un nuevo tag correcto y lo valida
         Given I navigate to page "http://localhost:2368/ghost/"
         And I log in
