@@ -1,26 +1,30 @@
 class TagsPage {
   url = "ghost/#/tags";
+
+  constructor(driver) {
+    this.driver = driver;
+  }
   
-  async visit(driver, baseUrl) {
-    await driver.get(baseUrl + this.url);
+  async visit(baseUrl) {
+    await this.driver.url(baseUrl + this.url);
   }
 
-  async createNewTag(driver) {
-    let newTagButton = await driver.findElement(By.xpath("//a[text()='New tag']"));
+  async createNewTag() {
+    const newTagButton = await this.driver.$('a*=New tag');
     await newTagButton.click();
   }
 
-  async getTagList(driver) {
-    return await driver.findElements(By.css(".gh-tag-list-name"));
+  async getTagList() {
+    return await this.driver.findElements(By.css(".gh-tag-list-name"));
   }
 
-  async getTagNameList(driver) {
-    return await driver.findElements(By.css("h3.gh-tag-list-name"));
+  async getTagNameList() {
+    return await this.driver.$$("h3.gh-tag-list-name");
   }
 
-  async editTagByName(driver, name) {
-    let tagTitle = await driver.findElement(By.xpath(`//h3[contains(text(), '${name}')]`));
-    await tagTitle.click();
+  async editTagByName(name) {
+    const tag = await this.driver.$(`h3=${name}`);
+    await tag.click();
   }
 }
 

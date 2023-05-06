@@ -9,5 +9,5 @@ Given('I log into ghost', async function () {
     await loginPage.visit(baseUrl);
     await loginPage.fillEmail("testemail@email.com");
     await loginPage.fillPassword("testing100");
-    return await loginPage.submit();
+    await loginPage.submit();
   });
