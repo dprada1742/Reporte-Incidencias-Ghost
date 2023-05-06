@@ -15,6 +15,10 @@ class TagsPage {
   getTagNameList() {
     return cy.get("h3.gh-tag-list-name");
   }
+
+  editTagByName(name){
+    cy.get("h3").contains(name).click()
+  }
 }
 
 export default new TagsPage();

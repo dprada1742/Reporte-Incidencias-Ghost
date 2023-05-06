@@ -40,6 +40,11 @@ class NewTagsPage {
     field.type(value, { force: true });
     return this;
   }
+
+  GetTagDescription() {
+    return cy.get("#tag-description");
+  }
+
 }
 
 export default new NewTagsPage();
