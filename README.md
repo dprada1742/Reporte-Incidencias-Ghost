@@ -16,7 +16,7 @@
 
 3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Kraken
 
-<pre><code>npx kraken-nodr run</code></pre>
+<pre><code>npx kraken-node run</code></pre>
 
 *Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente.*
 
