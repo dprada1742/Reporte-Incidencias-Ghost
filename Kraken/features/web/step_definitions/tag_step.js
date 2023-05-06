@@ -21,6 +21,10 @@ When('I fill the new tag fields {kraken-string}', async function (name) {
   await newTagPage.fillTagSlug("slug value");
   await newTagPage.fillTagDescription(name);
 });
+When('I edit the tag name with {kraken-string}', async function (name) {
+  let newTagPage = new NewTagsPage(this.driver);
+  await newTagPage.fillTagName(name);
+});
 
 When('I edit the description', async function () {
   let newTagPage = new NewTagsPage(this.driver);
@@ -42,6 +46,11 @@ When('I fill the new tag fields but an invalid description {kraken-string}', asy
 });
 
 When('I select the tag that was created {kraken-string}', async function (name) {
+  let tagPage = new TagsPage(this.driver);
+  await tagPage.editTagByName(name);
+});
+
+When('I select the tag that was edited {kraken-string}', async function (name) {
   let tagPage = new TagsPage(this.driver);
   await tagPage.editTagByName(name);
 });
@@ -94,6 +103,12 @@ Then('No tag should be created {kraken-string}', async function (tagName) {
 Then('I should validate the description {kraken-string}', async function (tagName) {
   let newTagPage = new NewTagsPage(this.driver);
   let tagText = await newTagPage.GetTagDescription()
+  expect(tagText).to.equal(tagName);
+});
+
+Then('I should validate the Tag name {kraken-string}', async function (tagName) {
+  let newTagPage = new NewTagsPage(this.driver);
+  let tagText = await newTagPage.GetTagName()
   expect(tagText).to.equal(tagName);
 });
 
