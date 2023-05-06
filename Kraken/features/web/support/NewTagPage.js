@@ -46,7 +46,8 @@ class NewTagsPage {
   }
 
   async GetTagDescription() {
-    return this.driver.$("#tag-description");
+    const field = await this.driver.$("#tag-description");
+    return await field.getValue()
   }
 
 }
