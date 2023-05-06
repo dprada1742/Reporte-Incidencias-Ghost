@@ -4,8 +4,22 @@
 * [Pros/Contras Kraken](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki/an%C3%A1lisis-kraken)
 
 ### Pasos para ejecutar pruebas creadas en Cypress
+1. Ubicarse en la carpeta CypressE2E
+2. Ejecutar el comando <pre><code>npm install</code></pre>
+3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Cypress
+<pre><code>npx cypress run</code></pre>
 
 ### Pasos para ejecutar pruebas creadas en Kraken
+1. Ubicarse en la carpeta Kraken
+
+2. Ejecutar el comando <pre><code>npm install</code></pre>
+
+3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Kraken
+
+<pre><code>npx kraken-nodr run</code></pre>
+
+*Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente.*
+
 
 ### Funcionalidades y escenarios de prueba
 
