@@ -5,21 +5,24 @@ const expect = require('chai').expect;
 
 const baseUrl = "http://localhost:2368/";
 
-Given('I go to the the Tag section', async function () {
+Given('I go to the the Tag section with step id of {string}', async function (stepname) {
   let tagPage = new TagsPage(this.driver);
   await tagPage.visit(baseUrl);
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I press the button New Tag', async function () {
+When('I press the button New Tag with step id of {string}', async function (stepname) {
   let tagPage = new TagsPage(this.driver);
   await tagPage.createNewTag();
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I fill the new tag fields {kraken-string}', async function (name) {
+When('I fill the new tag fields {kraken-string} with step id of {string}', async function (name, stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.fillTagName(name);
   await newTagPage.fillTagSlug("slug value");
   await newTagPage.fillTagDescription(name);
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 When('I edit the tag name with {kraken-string}', async function (name) {
   let newTagPage = new NewTagsPage(this.driver);
@@ -31,18 +34,20 @@ When('I edit the description', async function () {
   await newTagPage.fillTagDescription(generateRandomString(501));
 });
 
-When('I fill the new tag fields but the slug is empty {kraken-string}', async function (name) {
+When('I fill the new tag fields but the slug is empty {kraken-string} with step id of {string}', async function (name, stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.fillTagName(name);
   await newTagPage.fillTagSlug("");
   await newTagPage.fillTagDescription("description");
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I fill the new tag fields but an invalid description {kraken-string}', async function (name) {
+When('I fill the new tag fields but an invalid description {kraken-string} with step id of {string}', async function (name, stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.fillTagName(name);
   await newTagPage.fillTagSlug("slug");
   await newTagPage.fillTagDescription(generateRandomString(501));
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 When('I select the tag that was created {kraken-string}', async function (name) {
@@ -55,14 +60,16 @@ When('I select the tag that was edited {kraken-string}', async function (name) {
   await tagPage.editTagByName(name);
 });
 
-When('I save the tag', async function () {
+When('I save the tag with step id of {string}', async function (stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.save();
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I press the button Leave', async function () {
+When('I press the button Leave with step id of {string}', async function (stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.leave();
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 When('I clear the slug', async function () {
