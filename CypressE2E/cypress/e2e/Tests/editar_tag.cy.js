@@ -6,6 +6,7 @@ import Sidebar from "../pages/Sidebar";
 
 import { faker } from "@faker-js/faker";
 
+let hasScreenshotBeenTaken = false;
 describe("Editar tag", () => {
   beforeEach(() => {
     cy.fixture("loginData").then((data) => {
@@ -14,6 +15,10 @@ describe("Editar tag", () => {
       LoginPage.visit(baseUrl);
       LoginPage.fillEmail(email);
       LoginPage.fillPassword(password);
+      if (!hasScreenshotBeenTaken) {
+        cy.screenshot("editar_post_login");
+        hasScreenshotBeenTaken = true;
+      }
       LoginPage.submit();
     });
   });
@@ -118,9 +123,12 @@ describe("Editar tag", () => {
 
       // When: Voy a la seccion de tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc3_01_editar_tag")
 
       // When: Oprimo el boton New Tag
       TagsPage.createNewTag();
+      cy.screenshot("sc3_02_editar_tag")
 
       // When: Lleno todos los campos del formulario de new tag oprimo el boton save
       const tagName = faker.lorem.word();
@@ -129,27 +137,38 @@ describe("Editar tag", () => {
       NewTagPage.fillTagSlug(faker.lorem.slug());
       NewTagPage.fillTagDescription(descripcion);
       NewTagPage.save();
+      cy.screenshot("sc3_03_editar_tag")
 
       cy.wait(1000);
 
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc3_04_editar_tag")
 
       // When: Selecciono el tag que acabo de crear
       TagsPage.editTagByName(tagName);
+      cy.screenshot("sc3_05_editar_tag")
 
       //When edito la descripcion con valor invalido (mas de 500 caracteres) y guardo
       NewTagPage.fillTagDescription(faker.lorem.sentence(100));
       NewTagPage.save();
+      cy.screenshot("sc3_06_editar_tag")
 
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc3_07_editar_tag")
 
       // When: Oprimo el boton leave
+    
       NewTagPage.leave();
+      cy.wait(1000);
+      cy.screenshot("sc3_08_editar_tag")
 
       // When: Selecciono el tag que acabo de editar
       TagsPage.editTagByName(tagName);
+      cy.screenshot("sc3_09_editar_tag")
 
       // Then: La descripcion no debio cambiar al valor invalido
       NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
