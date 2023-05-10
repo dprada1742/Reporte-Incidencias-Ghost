@@ -15,10 +15,12 @@ describe("Editar tag", () => {
       LoginPage.visit(baseUrl);
       LoginPage.fillEmail(email);
       LoginPage.fillPassword(password);
+
       if (!hasScreenshotBeenTaken) {
-        cy.screenshot("editar_post_login");
+        cy.screenshot("editar_tag_login");
         hasScreenshotBeenTaken = true;
       }
+
       LoginPage.submit();
     });
   });
@@ -181,32 +183,44 @@ describe("Editar tag", () => {
 
       // When: Voy a la seccion de tags
       TagsPage.visit(baseUrl);
+      cy.screenshot("sc4_01_visit_tags")
 
       // When: Oprimo el boton New Tag
       TagsPage.createNewTag();
+      cy.screenshot("sc4_02_create_new_tag")
 
       // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
       const tagName = faker.lorem.word();
       NewTagPage.fillTagName(tagName);
       NewTagPage.fillTagSlug(faker.lorem.slug());
       NewTagPage.fillTagDescription(faker.lorem.sentence(10));
+      
+      cy.screenshot("sc4_03_fill_tag_data")
       NewTagPage.save();
 
       cy.wait(1000);
 
       // When: Me regreso a la seccion de Tags y selecciono el tag creado
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc4_04_list_tags")
       TagsPage.editTagByName(tagName);
+      cy.screenshot("sc4_05_edit_created_tag")
 
       // When: Limpio el valor de slug y oprimo el boton save
       NewTagPage.clearSlug();
+      
+      cy.screenshot("sc4_06_delete_tag")
       NewTagPage.save();
 
       cy.wait(1000);
 
       // When: Me regreso a la seccion de Tags y edito el tag nuevamente
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc4_07_list_tags_after_update")
       TagsPage.editTagByName(tagName);
+      cy.screenshot("sc4_08_edit_tag_after_update")
 
       // Then: Encuentro el tag que cree
       NewTagPage.getSlugField().should(($input) => {
