@@ -4,19 +4,22 @@ const expect = require('chai').expect;
 
 const baseUrl = "http://localhost:2368/";
 
-When('I go to new post page', async function () {
+When('I go to new post page with step id of {string}', async function (stepname) {
   let postsPage = new PostsPage(this.driver);
   await postsPage.visitNewPost(baseUrl);
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I navigate to the posts page', async function () {
+When('I navigate to the posts page with step id of {string}', async function (stepname) {
   let postsPage = new PostsPage(this.driver);
   await postsPage.visit(baseUrl);
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I edit the post with name {kraken-string}', async function (postTitle) {
+When('I edit the post with name {kraken-string} with step id of {string}', async function (postTitle, stepname) {
   let postPage = new PostsPage(this.driver)
   await postPage.editPostByName(postTitle)
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 Then('the post list must contain the {kraken-string}', async function (postTitle) {
