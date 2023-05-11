@@ -2,7 +2,6 @@ const compareImages = require("resemblejs/compareImages")
 const config = require("./config.json");
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 
 const { options } = config;
 
@@ -31,7 +30,7 @@ async function compareFiles(dir1, dir2) {
             let scenario = path.basename(path.dirname(file1))
             scenarios.push(file1)
 
-            const folderPath = `./results/${scenario}`;
+            const folderPath = `results/${scenario}`;
             const diffFilePath = `${folderPath}/compare-${path.basename(file1)}`;
             resultInfo[file1] = {
                 isSameDimensions: data.isSameDimensions,
@@ -54,61 +53,76 @@ async function compareFiles(dir1, dir2) {
     }
 }
 
-function scenario(b, info){
-    return `<div class=" browser" id="test0">
-    <div class=" btitle">
-        <h2>Browser: ${b}</h2>
-        <p>Data: ${JSON.stringify(info)}</p>
+function scenario(s, info) {
+    let parts = s.split('/');
+    return `
+    <div class="btitle">
+      <h3>Scenario: ${parts[1]}</h3><h4>Step:${parts[2]}</h4>
     </div>
-    <div class="imgline">
-      <div class="imgcontainer">
-        <span class="imgname">Reference</span>
-        <img class="img2" src="${info.reference}" id="refImage" label="Reference">
-      </div>
-      <div class="imgcontainer">
-        <span class="imgname">Test</span>
-        <img class="img2" src="${info.test}" id="testImage" label="Test">
-      </div>
-    </div>
-    <div class="imgline">
-      <div class="imgcontainer">
-        <span class="imgname">Diff</span>
-        <img class="imgfull" src="${info.diff}" id="diffImage" label="Diff">
-      </div>
-    </div>
+      <div class="row images">
+        <div class="col-md-3">
+          <span class="imgname">Reference</span>
+          <img class="img2" src="../../${info.reference}" id="refImage" label="Reference">
+        </div>
+        <div class="col-md-3">
+          <span class="imgname">Test</span>
+          <img class="img2" src="../../${info.test}" id="testImage" label="Test">
+        </div>
+        <div class="col-md-3">
+            <span class="imgname">Diff</span>
+            <img class="img2" src="../../${info.diff}" id="diffImage" label="Diff">
+        </div>
+        <div class="col-md-3">
+        <span class="imgname">Result Information</span>
+            <div class="row"><p class="key">Same dimensions:</p><span>${info.isSameDimensions}</span></div>
+            <div class="row"><p class="key">Raw mismatch percentage: </p><span>${info.rawMisMatchPercentage}%</span></div>
+            <div class="row"><p class="key">Mistmatch percentage: </p><span>${info.misMatchPercentage}%</span></div>
+            <div class="row"><p class="key">Analysis Time: </p><span>${info.analysisTime}</span></div>
+        </div>
   </div>`
 }
 
-function createReport(datetime, resInfo){
+function createReport(datetime, resInfo) {
     return `
     <html>
-        <head>
-            <title> VRT Report </title>
-            <link href="index.css" type="text/css" rel="stylesheet">
-        </head>
-        <body>
-            <h1>Report for Ghost</h1>
-            <p>Executed: ${datetime}</p>
-            <div id="visualizer">
-                ${scenarios.map(s=>scenario(s, resInfo[s]))}
-            </div>
-        </body>
+  <head>
+    <title> VRT Report </title>
+    <link href="index.css" type="text/css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      </head>
+      <body>
+        <div class="container-fluid">
+                <h1>Report for Ghost</h1>
+                <p>Executed: ${datetime}</p>
+                ${scenarios.map(s => scenario(s, resInfo[s]))}
+          </div>
+      </body>
     </html>`
 }
 
 const directoryPathGhost3_4_1 = './ghost 3.4.1';
 const directoryPathGhost4_44 = './ghost 4.44';
-compareFiles(directoryPathGhost3_4_1, directoryPathGhost4_44)
 
-const now = new Date();
-const datetime = now.toISOString();
-const hash = crypto.createHash('sha256').update(datetime).digest('hex');
-console.log(hash);
+(async function () {
+    await compareFiles(directoryPathGhost3_4_1, directoryPathGhost4_44)
 
-let reportPath = `./results/${hash}`
-if (!fs.existsSync(reportPath)) {
-    fs.mkdirSync(reportPath, { recursive: true });
-}
+    const now = new Date();
+    const year = now.getFullYear().toString().substring(2);
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
 
-fs.writeFileSync(`${reportPath}/report.html`, createReport(now, resultInfo));
-fs.copyFileSync('./index.css', `${reportPath}/index.css`);
+    const formattedDate = `results_${year}_${month}_${day}_${hours}:${minutes}:${seconds}`;
+    console.log(formattedDate);
+
+
+    let reportPath = `./results/${formattedDate}`
+    if (!fs.existsSync(reportPath)) {
+        fs.mkdirSync(reportPath, { recursive: true });
+    }
+
+    fs.writeFileSync(`${reportPath}/report.html`, createReport(now, resultInfo));
+    fs.copyFileSync('./index.css', `${reportPath}/index.css`);
+})();
