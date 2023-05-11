@@ -32,11 +32,11 @@ class PostsPage {
   }
 
   clickPostSettings() {
-    cy.get('button.post-settings').click()
+    cy.get('button.settings-menu-toggle').click()
   }
 
   clickClosePostSettings() {
-    cy.get('button.close.settings-menu-header-action').click()
+    cy.get('button.settings-menu-toggle').click()
   }
 
   clickBackToPosts() {
