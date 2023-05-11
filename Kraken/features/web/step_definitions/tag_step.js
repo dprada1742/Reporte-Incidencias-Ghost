@@ -29,9 +29,10 @@ When('I edit the tag name with {kraken-string}', async function (name) {
   await newTagPage.fillTagName(name);
 });
 
-When('I edit the description', async function () {
+When('I edit the description with step id of {string}', async function (stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.fillTagDescription(generateRandomString(501));
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 When('I fill the new tag fields but the slug is empty {kraken-string} with step id of {string}', async function (name, stepname) {
@@ -50,9 +51,10 @@ When('I fill the new tag fields but an invalid description {kraken-string} with 
   await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I select the tag that was created {kraken-string}', async function (name) {
+When('I select the tag that was created {kraken-string} with step id of {string}', async function (name, stepname) {
   let tagPage = new TagsPage(this.driver);
   await tagPage.editTagByName(name);
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 When('I select the tag that was edited {kraken-string}', async function (name) {
@@ -72,9 +74,10 @@ When('I press the button Leave with step id of {string}', async function (stepna
   await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I clear the slug', async function () {
+When('I clear the slug with step id of {string}', async function (stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.clearSlug();
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 Then('I should have two tags with the same name {kraken-string}', async function (tagName) {
