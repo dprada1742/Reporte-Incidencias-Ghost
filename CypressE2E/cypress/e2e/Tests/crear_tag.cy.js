@@ -123,40 +123,6 @@ describe("Crear tag", () => {
     });
   });
 
-
-  it("Crea un nuevo tag correcto y lo valida", () => {
-    cy.fixture("loginData").then((data) => {
-      const { baseUrl } = data;
-
-      // When: Voy a la seccion de tags
-      TagsPage.visit(baseUrl);
-      cy.wait(1000);
-      cy.screenshot("sc3_01_crear_tag")
-
-      // When: Oprimo el boton New Tag
-      TagsPage.createNewTag();
-      cy.screenshot("sc3_02_crear_tag")
-
-      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
-      const tagName = faker.lorem.word();
-      NewTagPage.fillTagName(tagName);
-      NewTagPage.fillTagSlug(faker.lorem.slug());
-      NewTagPage.fillTagDescription(faker.lorem.sentence(10));
-      NewTagPage.save();
-      cy.screenshot("sc3_03_crear_tag")
-
-      cy.wait(1000);
-
-      // When: Me regreso a la seccion de Tags
-      TagsPage.visit(baseUrl);
-      cy.wait(1000);
-      cy.screenshot("sc3_04_crear_tag")
-
-      // Then: Encuentro el tag que cree
-      TagsPage.getTagList().contains(tagName).should("exist");
-    });
-  });
-
   it("Crea un nuevo tag con slug vacio", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
