@@ -38,9 +38,12 @@ describe("Editar tag", () => {
 
       // When: Voy a la seccion de tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc1_01_visit_tags_page")
 
       // When: Oprimo el boton New Tag
       TagsPage.createNewTag();
+      cy.screenshot("sc1_02_create_new_tag")
 
       // When: Lleno todos los campos del formulario de new tag oprimo el boton save
       const tagName = faker.lorem.word();
@@ -48,27 +51,35 @@ describe("Editar tag", () => {
       NewTagPage.fillTagName(tagName);
       NewTagPage.fillTagSlug(faker.lorem.slug());
       NewTagPage.fillTagDescription(descripcion);
+      cy.screenshot("sc1_03_fill_tag_data")
       NewTagPage.save();
 
       cy.wait(1000);
 
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc1_04_list_tags")     
 
       // When: Selecciono el tag que acabo de crear
       TagsPage.editTagByName(tagName);
+      cy.screenshot("sc1_05_select_created_tag")
 
       //When edito el nombre del tag con valor valido y guardo
       const newTagName = faker.lorem.word();
       NewTagPage.fillTagName(newTagName);
+      cy.screenshot("sc1_06_edit_created_tag")
       NewTagPage.save();
       cy.wait(1000);
 
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc1_07_list_tags_after_update")
 
       // When: Selecciono el tag que acabo de editar
       TagsPage.editTagByName(newTagName);
+      cy.screenshot("sc1_08_edit_tag_after_update")
 
       // Then: La descripcion no debio cambiar
       NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
@@ -81,9 +92,12 @@ describe("Editar tag", () => {
 
       // When: Voy a la seccion de tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc2_01_visit_tags_page")
 
       // When: Oprimo el boton New Tag
       TagsPage.createNewTag();
+      cy.screenshot("sc2_02_create_new_tag")
 
       // When: Lleno todos los campos del formulario de new tag oprimo el boton save
       const tagName = faker.lorem.word();
@@ -91,26 +105,35 @@ describe("Editar tag", () => {
       NewTagPage.fillTagName(tagName);
       NewTagPage.fillTagSlug(faker.lorem.slug());
       NewTagPage.fillTagDescription(descripcion);
+      cy.screenshot("sc2_03_fill_tag_data")
       NewTagPage.save();
 
       cy.wait(1000);
 
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc2_04_list_tags")
+      
 
       // When: Selecciono el tag que acabo de crear
       TagsPage.editTagByName(tagName);
+      cy.screenshot("sc2_05_select_created_tag")
 
       //When edito el nombre del tag con valor valido y guardo
       NewTagPage.fillTagName(tagName);
+      cy.screenshot("sc2_06_edit_created_tag")
       NewTagPage.save();
       cy.wait(1000);
 
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);
+      cy.wait(1000);
+      cy.screenshot("sc2_07_list_tags_after_update")
 
       // When: Selecciono el tag que acabo de editar
       TagsPage.editTagByName(tagName);
+      cy.screenshot("sc2_08_edit_tag_after_update")
 
       // Then: La descripcion no debio cambiar
       NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);

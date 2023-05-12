@@ -4,38 +4,38 @@
     Scenario: Editar tag datos validos
         Given I log into ghost
         And I wait for 1 seconds
-        When I go to the the Tag section
-        And I press the button New Tag
-        And I fill the new tag fields "$name_1"
-        And I save the tag
+        When I go to the the Tag section with step id of "editar_tag/sc1_01"
+        And I press the button New Tag with step id of "editar_tag/sc1_02"
+        And I fill the new tag fields "$name_1" with step id of "editar_tag/sc1_03"
+        And I save the tag with step id of "editar_tag/sc1_04"
         And I wait for 1 seconds
-        And I go to the the Tag section
-        And I select the tag that was created "$$name_1"
-        And I edit the tag name with "$name_2"
-        And I save the tag
+        And I go to the the Tag section with step id of "editar_tag/sc1_05"
+        And I select the tag that was created "$$name_1" with step id of "editar_tag/sc1_06"
+        And I edit the tag name with "$name_2" with step id of "editar_tag/sc1_07"
+        And I save the tag with step id of "editar_tag/sc1_08"
         And I wait for 1 seconds
-        And I go to the the Tag section
+        And I go to the the Tag section with step id of "editar_tag/sc1_09"
         And I wait for 2 seconds
-        And I select the tag that was edited "$$name_2"
+        And I select the tag that was edited "$$name_2" with step id of "editar_tag/sc1_10"
         Then I should validate the description "$$name_1"
 	
 	@user2 @web
     Scenario: Editar tag nombre repetido
         Given I log into ghost
         And I wait for 1 seconds
-        When I go to the the Tag section
-        And I press the button New Tag
-        And I fill the new tag fields "$name_2"
-        And I save the tag
+        When I go to the the Tag section with step id of "editar_tag/sc2_01"
+        And I press the button New Tag with step id of "editar_tag/sc2_02"
+        And I fill the new tag fields "$name_2" with step id of "editar_tag/sc2_03"
+        And I save the tag with step id of "editar_tag/sc2_04"
         And I wait for 1 seconds
-        And I go to the the Tag section
-        And I select the tag that was created "$$name_2"
-        And I edit the tag name with "$$name_2"
-        And I save the tag
+        And I go to the the Tag section with step id of "editar_tag/sc2_05"
+        And I select the tag that was created "$$name_2" with step id of "editar_tag/sc2_06"
+        And I edit the tag name with "$$name_2" with step id of "editar_tag/sc2_07"
+        And I save the tag with step id of "editar_tag/sc2_08"
         And I wait for 1 seconds
-        And I go to the the Tag section
+        And I go to the the Tag section with step id of "editar_tag/sc2_09"
         And I wait for 2 seconds
-        And I select the tag that was edited "$$name_2"
+        And I select the tag that was edited "$$name_2" with step id of "editar_tag/sc2_10"
         Then I should validate the Tag name "$$name_2"
 
     @user3 @web

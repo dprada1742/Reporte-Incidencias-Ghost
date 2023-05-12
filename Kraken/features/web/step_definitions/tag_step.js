@@ -24,9 +24,10 @@ When('I fill the new tag fields {kraken-string} with step id of {string}', async
   await newTagPage.fillTagDescription(name);
   await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
-When('I edit the tag name with {kraken-string}', async function (name) {
+When('I edit the tag name with {kraken-string} with step id of {string}', async function (name, stepname) {
   let newTagPage = new NewTagsPage(this.driver);
   await newTagPage.fillTagName(name);
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 When('I edit the description with step id of {string}', async function (stepname) {
@@ -57,9 +58,10 @@ When('I select the tag that was created {kraken-string} with step id of {string}
   await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
-When('I select the tag that was edited {kraken-string}', async function (name) {
+When('I select the tag that was edited {kraken-string} with step id of {string}', async function (name, stepname) {
   let tagPage = new TagsPage(this.driver);
   await tagPage.editTagByName(name);
+  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
 });
 
 When('I save the tag with step id of {string}', async function (stepname) {
