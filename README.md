@@ -3,7 +3,7 @@
 ### Semana 06
 ### Pre-requisitos
 1. Para ejecutar las pruebas E2E se debe correr Ghost de manera local. Para el entregable de la semana 05, es obligatorio correr ghost 4.44.0. Es aconsejable ejecutar el siguiente comando para su ejecución docker:
-<pre><code>docker run -d -e url=http://localhost:3002 -p 3002:2368 --name ghost_4.44.0 ghost:4.44.0</code></pre>
+<pre><code>docker run -d -e url=http://localhost:2368 -p 2368:2368 --name ghost_4.44.0 ghost:4.44.0</code></pre>
 2. Para ejecutar las pruebas en Cypress, se debe configurar el archivo [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json), disponible en la carpeta de fixtures. Allí se debe configurar el puerto de ejecución de ghost y las credenciales para autenticarse.
 3. Para ejecutar las pruebas en Kraken, se debe configurar el puerto de ejecución de ghost en cada uno de los archivos "_step.js"
 
@@ -22,6 +22,7 @@ Al ejecutar los siguientes pasos en la última versión de este repositorio, ust
 2. Ejecutar el comando <pre><code>npm install</code></pre>
 3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Cypress
 <pre><code>npx cypress run</code></pre>
+4. Después de correr el comando, se creará una carpeta por cada escenario dentro de la carpeta `screenshots` (creada por defecto por Cypress)
 
 #### Pasos para ejecutar pruebas creadas en Kraken
 1. Ubicarse en la carpeta Kraken
@@ -31,7 +32,8 @@ Al ejecutar los siguientes pasos en la última versión de este repositorio, ust
 3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Kraken
 
 <pre><code>npx kraken-node run</code></pre>
-
+4. Después de correr el comando, se creará una carpeta por el escenario ejecutado dentro de la carpeta  `newReports`
+5. 
 *Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente. Se proporciona una carpeta para moves los features temporalmente:* temp_avoidFeatureRun
 
 ### Semana 05
