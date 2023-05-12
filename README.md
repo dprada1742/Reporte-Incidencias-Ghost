@@ -22,6 +22,7 @@ Al ejecutar los siguientes pasos en la última versión de este repositorio, ust
 2. Ejecutar el comando <pre><code>npm install</code></pre>
 3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Cypress
 <pre><code>npx cypress run</code></pre>
+4. Después de correr el comando, se creará una carpeta por cada escenario dentro de la carpeta `screenshots` (creada por defecto por Cypress)
 
 #### Pasos para ejecutar pruebas creadas en Kraken
 1. Ubicarse en la carpeta Kraken
@@ -31,7 +32,8 @@ Al ejecutar los siguientes pasos en la última versión de este repositorio, ust
 3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Kraken
 
 <pre><code>npx kraken-node run</code></pre>
-
+4. Después de correr el comando, se creará una carpeta por el escenario ejecutado dentro de la carpeta  `newReports`
+5. 
 *Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente. Se proporciona una carpeta para moves los features temporalmente:* temp_avoidFeatureRun
 
 ### Semana 05
