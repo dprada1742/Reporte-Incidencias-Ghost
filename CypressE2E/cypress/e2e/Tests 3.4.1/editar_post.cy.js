@@ -1,7 +1,7 @@
 import LoginPage from "../pages 3.4.1/LoginPage";
-import PostEditPage from "../pages/PostEditPage";
-import PostsPage from "../pages/PostsPage";
-import Sidebar from "../pages/Sidebar";
+import PostEditPage from "../pages 3.4.1/PostEditPage";
+import PostsPage from "../pages 3.4.1/PostsPage";
+import Sidebar from "../pages 3.4.1/Sidebar";
 
 import { CompanyModule, faker } from '@faker-js/faker';
 

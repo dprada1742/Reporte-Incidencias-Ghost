@@ -1,7 +1,7 @@
 import LoginPage from "../pages 3.4.1/LoginPage";
-import PostPage from "../pages/PostPage";
-import NewPostPage from "../pages/NewPostPage";
-import Sidebar from "../pages/Sidebar";
+import PostPage from "../pages 3.4.1/PostPage";
+import NewPostPage from "../pages 3.4.1/NewPostPage";
+import Sidebar from "../pages 3.4.1/Sidebar";
 
 describe("Crear Post", () => {
   beforeEach(() => {

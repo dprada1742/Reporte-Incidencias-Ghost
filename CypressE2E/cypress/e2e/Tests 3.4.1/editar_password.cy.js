@@ -1,6 +1,6 @@
 import LoginPage from "../pages 3.4.1/LoginPage";
-import Sidebar from "../pages/Sidebar";
-import StaffPage from "../pages/StaffPage";
+import Sidebar from "../pages 3.4.1/Sidebar";
+import StaffPage from "../pages 3.4.1/StaffPage";
 
 describe("Editar Contraseña", () => {
   beforeEach(() => {
