@@ -5,21 +5,21 @@ class LoginPage {
     }
   
     fillEmail(value) {
-      const field = cy.get('#ember7')
+      const field = cy.get('#ember8')
       field.clear()
       field.type(value)
       return this
     }
   
     fillPassword(value) {
-      const field = cy.get('#ember9')
+      const field = cy.get('#ember10')
       field.clear()
       field.type(value)
       return this
     }
   
     submit() {
-      const button = cy.get('#ember11')
+      const button = cy.get('#ember12')
       button.click()
       cy.wait(2000)
     }

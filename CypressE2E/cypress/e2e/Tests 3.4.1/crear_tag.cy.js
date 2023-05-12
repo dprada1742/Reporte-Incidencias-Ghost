@@ -1,7 +1,7 @@
-import LoginPage from "../pages/LoginPage";
-import NewTagPage from "../pages/NewTagPage";
-import TagsPage from "../pages/TagsPage";
-import Sidebar from "../pages/Sidebar";
+import LoginPage from "../pages 3.4.1/LoginPage";
+import NewTagPage from "../pages 3.4.1/NewTagPage";
+import TagsPage from "../pages 3.4.1/TagsPage";
+import Sidebar from "../pages 3.4.1/Sidebar";
 
 import { faker } from "@faker-js/faker";
 

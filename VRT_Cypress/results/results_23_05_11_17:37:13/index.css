@@ -1,0 +1,38 @@
+.btitle {
+  padding: 5px 0;
+}
+
+.imgname {
+  font-family: latoregular;
+  color: #787878;
+  display: block;
+  margin: 0 auto;
+  text-transform: uppercase;
+  padding: 5px 0;
+  padding-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.img2 {
+  width: auto;
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+}
+
+.imgfull {
+  width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+}
+
+.images{
+    border-bottom: double;
+    padding-bottom: 10px;
+}
+
+.key{
+    font-weight: bold;
+    margin-right: 10px;
+}
