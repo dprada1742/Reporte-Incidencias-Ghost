@@ -3,6 +3,8 @@ import PostPage from "../pages/PostPage";
 import NewPostPage from "../pages/NewPostPage";
 import Sidebar from "../pages/Sidebar";
 
+let hasScreenshotBeenTaken = false;
+
 describe("Crear Post", () => {
   beforeEach(() => {
     cy.fixture("loginData").then((data) => {
@@ -11,6 +13,12 @@ describe("Crear Post", () => {
       LoginPage.visit(baseUrl);
       LoginPage.fillEmail(email);
       LoginPage.fillPassword(password);
+
+      if (!hasScreenshotBeenTaken) {
+        cy.screenshot("crear_post_login");
+        hasScreenshotBeenTaken = true;
+      }
+
       LoginPage.submit();
     });
   });
