@@ -3,7 +3,7 @@
 ### Semana 06
 ### Pre-requisitos
 1. Para ejecutar las pruebas E2E se debe correr Ghost de manera local. Para el entregable de la semana 05, es obligatorio correr ghost 4.44.0. Es aconsejable ejecutar el siguiente comando para su ejecución docker:
-<pre><code>docker run -d -e url=http://localhost:3002 -p 3002:2368 --name ghost_4.44.0 ghost:4.44.0</code></pre>
+<pre><code>docker run -d -e url=http://localhost:2368 -p 2368:2368 --name ghost_4.44.0 ghost:4.44.0</code></pre>
 2. Para ejecutar las pruebas en Cypress, se debe configurar el archivo [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json), disponible en la carpeta de fixtures. Allí se debe configurar el puerto de ejecución de ghost y las credenciales para autenticarse.
 3. Para ejecutar las pruebas en Kraken, se debe configurar el puerto de ejecución de ghost en cada uno de los archivos "_step.js"
 
