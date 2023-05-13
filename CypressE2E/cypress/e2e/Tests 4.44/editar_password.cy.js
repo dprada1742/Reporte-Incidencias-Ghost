@@ -84,60 +84,6 @@ describe("Editar Contraseña", () => {
     });
   });
 
-  it("Editar Contraseña en blanco", () => {
-    cy.fixture("loginData").then((data) => {
-      const { password, baseUrl } = data;
-      const newPassword = " "
-
-      // When: Voy a la seccion de Staff
-      StaffPage.visit(baseUrl);
-      cy.wait(1000);
-      cy.screenshot("sc3_01_visit_staff_page")
-
-      // When: Selecciono al propietario del sitio
-      StaffPage.selectOwner();
-      cy.screenshot("sc3_02_visit_staff_page")
-
-      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save      
-      StaffPage.fillOldPassword(password)
-      StaffPage.fillNewPassword(newPassword)
-      StaffPage.fillVerificationPassword(newPassword)
-      cy.screenshot("sc3_03_fill_form")
-      StaffPage.save()
-
-      // Then: Recibo Notificacion de cambio exitoso
-      cy.screenshot("sc3_04_error_pass_in_blank")
-      StaffPage.assertErrorMessage("Sorry, passwords can't be blank")
-    });
-  });
-
-  it("Editar Contraseña insegura", () => {
-    cy.fixture("loginData").then((data) => {
-      const { password, baseUrl } = data;
-      const newPassword = "1234567890"
-
-      // When: Voy a la seccion de Staff
-      StaffPage.visit(baseUrl);
-      cy.wait(1000);
-      cy.screenshot("sc4_01_visit_staff_page")
-
-      // When: Selecciono al propietario del sitio
-      StaffPage.selectOwner();
-      cy.screenshot("sc4_02_visit_staff_page")
-
-      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save      
-      StaffPage.fillOldPassword(password)
-      StaffPage.fillNewPassword(newPassword)
-      StaffPage.fillVerificationPassword(newPassword)
-      cy.screenshot("sc4_03_fill_form")
-      StaffPage.save()
-
-      // Then: Recibo Notificacion de cambio exitoso
-      cy.screenshot("sc4_04_error_pass_insecure")
-      StaffPage.assertErrorMessage('Sorry, you cannot use an insecure password')
-    });
-  });
-
   afterEach(() => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;

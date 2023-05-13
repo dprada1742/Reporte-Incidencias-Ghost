@@ -1,5 +1,5 @@
 class StaffPage {
-  url = "ghost/#/staff";
+  url = "ghost/#/settings/staff";
   visit(baseUrl) {
     cy.visit(baseUrl + this.url);
   }
