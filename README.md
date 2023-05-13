@@ -5,7 +5,8 @@
 |--------------|---------------------:|
 |Crear tag| Daniela Prada|
 |Editar tag	| Todos los integrantes del equipo|
-|Crear post	| Daniel Buelvas|
+|Crear post	| Sebastian Ulloa|
+|Editar post	| Daniel Buelvas|
 |Editar Contraseña de usuario| Juan David Torres|
 
 ## Cypress
