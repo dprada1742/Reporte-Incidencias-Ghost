@@ -1,4 +1,4 @@
-# Semana 06 Pruebas E2E
+# Semana 06 VRT
 ### Funcionalidades presentes en las pruebas
 
 |Funcionalidad  | Tester |
@@ -23,7 +23,7 @@ En ambas versiones se ve la implementacion de los screen shots. Vale la pena des
 ### Pre-requisitos para la ejecución de puebas
 1. Para ejecutar las pruebas E2E de la semana 6 se debe correr Ghost de manera local en la version 3.4.1 y adicionalmente en la version 4.44. Asumiendo que ya se tiene instalada y corriendo la version 3.4.1, es aconsejable ejecutar el siguiente comando para la ejecución de la version 4.44:
 <pre><code>docker run -d -e url=http://localhost:2368 -p 2368:2368 --name ghost_4.44.0 ghost:4.44.0</code></pre>
-2. Para ejecutar las pruebas en Cypress, se debe configurar el archivo [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json), disponible en la carpeta de fixtures. Allí se debe configurar el puerto de ejecución de ghost y las credenciales para autenticarse. El puerto varia dependiendo la version de ghost sobre la cual desea ejecutar las pruebas. 
+2. Para ejecutar las pruebas en Cypress, se debe configurar el archivo [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json), disponible en la carpeta de fixtures. Allí se debe configurar la URL de ghost y las credenciales para autenticarse.
 
 #### Ejecución de las pruebas
 Para ejecutar los escenarios en cypress se deben seguir los siguientes pasos:
@@ -35,13 +35,13 @@ Para ejecutar los escenarios en cypress se deben seguir los siguientes pasos:
 <pre><code>npx cypress run --spec cypress/e2e/Tests\ 3.4.1/*.js</code></pre>
 5. Para ejecutar las pruebas de la version 4.44 correr el siguiente comando:
 <pre><code>npx cypress run --spec cypress/e2e/Tests\ 4.44/*.js</code></pre>
-6. Se generá una nueva ventana de configuración de Cypress, seleccionar la opcion "E2E Testing".
-7. 
+6. En la carpeta de screenshots de cypress se verán los pantallazos capturados durante las pruebas.
+
 ## Kraken
 
 #### Escenarios modificados con screenshots 
 
-Dentro de la carpta "Kraken" se encuentran todos los archivos y recursos necesarios para ejecutar las pruebas automatizadas de las funcionalidades descritas en la sección anterior.
+Dentro de la carpta "Kraken" se encuentran todos los archivos y recursos necesarios para ejecutar las pruebas automatizadas de las funcionalidades descritas anteriormente.
 Es importante tener en cuenta que actualmente solo se puede ejecutar un archivo .feature a la vez en las pruebas. Por lo tanto, se recomienda mover los archivos .feature ubicados en la carpeta "features" a una ubicación separada y tener solo un archivo .feature en la carpeta a la vez. 
 En este proyecto se encuentran los 40 escenarios actualizados con la funcionalidad de los screensshots
 
@@ -50,19 +50,16 @@ En este proyecto se encuentran los 40 escenarios actualizados con la funcionalid
 
 ### Pasos para ejecutar pruebas creadas en Kraken
 1. Ubicarse en la carpeta Kraken
-
 2. Ejecutar el comando <pre><code>npm install</code></pre>
-
 3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Kraken
 
 <pre><code>npx kraken-node run</code></pre>
 
 *Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente. Se proporciona una carpeta para moves los features temporalmente:* temp_avoidFeatureRun
 
+## Ejecución VRT
 
-### Ejecución VRT
-
-Todos los archivos necesarios para ejecutar las pruebas de regresion visual se encuentran dentro de la carpeta VTR_Cypress. Vale la pena destacar que dentro de esta carpeta se encuentran las subcarpetas "ghost 3.4.1" y "ghost 4.44". Estas a su vez contienen subcarpetas que indican las funcionalidades y posteriormente el nombre de los escenarios sobre los cuales se van a correr las pruebas de regresión visual.
+Todos los archivos necesarios para ejecutar las pruebas de regresión visual se encuentran dentro de la carpeta VTR_Cypress. Vale la pena destacar que dentro de esta carpeta se encuentran las subcarpetas "ghost 3.4.1" y "ghost 4.44". Estas a su vez contienen subcarpetas que indican las funcionalidades y posteriormente el nombre de los escenarios sobre los cuales se van a correr las pruebas de regresión visual.
 
 Dentro de las carpetas de los escenarios ya se encuentran los screenshots de los 10 escenarios que se van a evaluar. Estos son los screenshots generados por las pruebas en Cypress.
 
@@ -74,7 +71,7 @@ Para que las pruebas de regresión funcionen correctamente los screenshots de lo
 3. Una vez las dependencias estén instaladas, es posible ejecutar el comando de ejecución para la generación del reporte VRT mediante el comando:
 <pre><code>node index.js</code></pre>
 4. En consola obtendrá el nombre del reporte generado. De igual forma, encontrará el reporte en la carpeta de results/
-5. Dentro de la carpeta de results, observará que se genera una carpeta por cada escenario más una carpeta con el formato results_yy_mm_dd_hh:mm:ss. Dentro de esa carpeta encontrará el archivo index.html con el reporte de ejecución.
+5. Dentro de la carpeta de results, observará que se genera una carpeta por cada escenario más una carpeta con el formato results_yy_mm_dd_hh_mm_ss. Dentro de esa carpeta encontrará el archivo index.html con el reporte de ejecución.
 
 # Semana 05
 ### Pre-requisitos
