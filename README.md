@@ -9,6 +9,10 @@
 |Editar post	| Daniel Buelvas|
 |Editar Contraseña de usuario| Juan David Torres|
 
+Pros y contras: [Resemble](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki/an%C3%A1lisis-resemble) y [Backstop](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki/an%C3%A1lisis-backstop)
+
+Incidentes de regresión visual se pueden encontrar en los [issues](https://github.com/dprada1742/Reporte-Incidencias-Ghost/issues) de este repositorio
+
 ## Cypress
 
 #### Escenarios modificados con Screenshots en Cypress
