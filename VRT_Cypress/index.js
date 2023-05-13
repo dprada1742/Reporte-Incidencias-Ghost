@@ -114,7 +114,7 @@ const directoryPathGhost4_44 = './ghost 4.44';
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
 
-    const formattedDate = `results_${year}_${month}_${day}_${hours}:${minutes}:${seconds}`;
+    const formattedDate = `results_${year}_${month}_${day}_${hours}_${minutes}_${seconds}`;
     console.log(formattedDate);
 
 
