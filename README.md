@@ -1,30 +1,53 @@
-## Pruebas E2E
+# Semana 06 Pruebas E2E
+### Funcionalidades presentes en las pruebas
 
-### Semana 06
-### Pre-requisitos
-1. Para ejecutar las pruebas E2E se debe correr Ghost de manera local. Para el entregable de la semana 05, es obligatorio correr ghost 4.44.0. Es aconsejable ejecutar el siguiente comando para su ejecución docker:
+|Funcionalidad  | Tester |
+|--------------|---------------------:|
+|Crear tag| Daniela Prada|
+|Editar tag	| Todos los integrantes del equipo|
+|Crear post	| Daniel Buelvas|
+|Editar Contraseña de usuario| Juan David Torres|
+
+## Cypress
+
+#### Escenarios modificados con Screenshots en Cypress
+Dentro del repositorio, se encuetra la carpeta llamada CypressE2E, que contiene todos los archivos y recursos necesarios para ejecutar las pruebas automatizadas cypress de las funcionalidades descritas en la sección anterior.
+
+Dentro de la carpeta "CypressE2E", se encuentra la subcarpeta "cypress/e2e". Dentro de esta subcarpeta, hay dos subcarpetas adicionales: "pages 3.4.1" y "pages". En estas carpetas se encuentran las Clases Page Object correspondientes a las respectivas versiones de Ghost.
+
+Dentro de la subcarpeta "cypress/e2e", también se encuentran las subcarpetas "Tests 3.4.1" y "Tests 4.44". Estas subcarpetas contienen las pruebas automatizadas correspondientes a cada versión específica de Ghost.
+
+En ambas versiones se ve la implementacion de los screen shots. Vale la pena destacar que para la version 3.4.1 hay 20 escenarios y para la version 4.44 hay 10 escenarios. 
+
+### Pre-requisitos para la ejecución de puebas
+1. Para ejecutar las pruebas E2E de la semana 6 se debe correr Ghost de manera local en la version 3.4.1 y adicionalmente en la version 4.44. Asumiendo que ya se tiene instalada y corriendo la version 3.4.1, es aconsejable ejecutar el siguiente comando para la ejecución de la version 4.44:
 <pre><code>docker run -d -e url=http://localhost:2368 -p 2368:2368 --name ghost_4.44.0 ghost:4.44.0</code></pre>
-2. Para ejecutar las pruebas en Cypress, se debe configurar el archivo [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json), disponible en la carpeta de fixtures. Allí se debe configurar el puerto de ejecución de ghost y las credenciales para autenticarse.
-3. Para ejecutar las pruebas en Kraken, se debe configurar el puerto de ejecución de ghost en cada uno de los archivos "_step.js"
+2. Para ejecutar las pruebas en Cypress, se debe configurar el archivo [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json), disponible en la carpeta de fixtures. Allí se debe configurar el puerto de ejecución de ghost y las credenciales para autenticarse. El puerto varia dependiendo la version de ghost sobre la cual desea ejecutar las pruebas. 
 
-### Ejecución VRT
-1. Ubicarse en la carpeta VRT_Cypress
-2. Ejecutar el comando <pre><code>npm install</code></pre>
-3. Una vez las dependencias estén instaladas, es posible ejecutar el comando de ejecución para la generación del reporte VRT
-<pre><code>node index.js</code></pre>
-4. En consola obtendrá el nombre del reporte generado. De igual forma, encontrará el reporte en la carpeta de results/
-5. Dentro de la carpeta de results, observará que se genera una carpeta por cada escenario más una carpeta con el formato results_yy_mm_dd_hh:mm:ss. Dentro de esa carpeta encontrará el archivo index.html con el reporte de ejecución.
-
-### Creación de screenshots por step
-Al ejecutar los siguientes pasos en la última versión de este repositorio, usted podrá obtener una carpeta de screenshots (tanto en cypress como en ghost) para su futura prueba de regresión visual.
-#### Pasos para ejecutar pruebas creadas en Cypress
+#### Ejecución de las pruebas
+Para ejecutar los escenarios en cypress se deben seguir los siguientes pasos:
 1. Ubicarse en la carpeta CypressE2E
-2. Ejecutar el comando <pre><code>npm install</code></pre>
-3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Cypress
-<pre><code>npx cypress run</code></pre>
-4. Después de correr el comando, se creará una carpeta por cada escenario dentro de la carpeta `screenshots` (creada por defecto por Cypress)
+2. Ejecutar el comando:
+<pre><code>npm install</code></pre>
+4. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Cypress. Dependiendo de la version de ghost que desee probar, modifique la URL en  [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json).
+5. Para ejecutar las pruebas de la version 3.4.1 correr el siguiente comando:
+<pre><code>npx cypress run --spec cypress/e2e/Tests\ 3.4.1/*.js</code></pre>
+5. Para ejecutar las pruebas de la version 4.44 correr el siguiente comando:
+<pre><code>npx cypress run --spec cypress/e2e/Tests\ 4.44/*.js</code></pre>
+6. Se generá una nueva ventana de configuración de Cypress, seleccionar la opcion "E2E Testing".
+7. 
+## Kraken
 
-#### Pasos para ejecutar pruebas creadas en Kraken
+#### Escenarios modificados con screenshots 
+
+Dentro de la carpta "Kraken" se encuentran todos los archivos y recursos necesarios para ejecutar las pruebas automatizadas de las funcionalidades descritas en la sección anterior.
+Es importante tener en cuenta que actualmente solo se puede ejecutar un archivo .feature a la vez en las pruebas. Por lo tanto, se recomienda mover los archivos .feature ubicados en la carpeta "features" a una ubicación separada y tener solo un archivo .feature en la carpeta a la vez. 
+En este proyecto se encuentran los 40 escenarios actualizados con la funcionalidad de los screensshots
+
+#### Ejecución de las pruebas
+1. Para ejecutar las pruebas en Kraken, se debe configurar el puerto de ejecución de ghost en cada uno de los archivos "_step.js"
+
+### Pasos para ejecutar pruebas creadas en Kraken
 1. Ubicarse en la carpeta Kraken
 
 2. Ejecutar el comando <pre><code>npm install</code></pre>
@@ -32,11 +55,27 @@ Al ejecutar los siguientes pasos en la última versión de este repositorio, ust
 3. Una vez las dependencias estén instaladas, es posible ejecutar las pruebas en Kraken
 
 <pre><code>npx kraken-node run</code></pre>
-4. Después de correr el comando, se creará una carpeta por el escenario ejecutado dentro de la carpeta  `newReports`
-5. 
+
 *Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente. Se proporciona una carpeta para moves los features temporalmente:* temp_avoidFeatureRun
 
-### Semana 05
+
+### Ejecución VRT
+
+Todos los archivos necesarios para ejecutar las pruebas de regresion visual se encuentran dentro de la carpeta VTR_Cypress. Vale la pena destacar que dentro de esta carpeta se encuentran las subcarpetas "ghost 3.4.1" y "ghost 4.44". Estas a su vez contienen subcarpetas que indican las funcionalidades y posteriormente el nombre de los escenarios sobre los cuales se van a correr las pruebas de regresión visual.
+
+Dentro de las carpetas de los escenarios ya se encuentran los screenshots de los 10 escenarios que se van a evaluar. Estos son los screenshots generados por las pruebas en Cypress.
+
+Para que las pruebas de regresión funcionen correctamente los screenshots de los pasos que resultaron de las pruebas sobre la version 3.4.1 deben tener exactamente el mismo nombre de los screenshots que se generaron por las pruebas de la version 4.44.
+
+#### Ejecución de las pruebas
+1. Ubicarse en la carpeta VRT_Cypress
+2. Ejecutar el comando <pre><code>npm install</code></pre>
+3. Una vez las dependencias estén instaladas, es posible ejecutar el comando de ejecución para la generación del reporte VRT mediante el comando:
+<pre><code>node index.js</code></pre>
+4. En consola obtendrá el nombre del reporte generado. De igual forma, encontrará el reporte en la carpeta de results/
+5. Dentro de la carpeta de results, observará que se genera una carpeta por cada escenario más una carpeta con el formato results_yy_mm_dd_hh:mm:ss. Dentro de esa carpeta encontrará el archivo index.html con el reporte de ejecución.
+
+# Semana 05
 ### Pre-requisitos
 1. Para ejecutar las pruebas E2E se debe correr Ghost de manera local. Para el entregable de la semana 05, es obligatorio correr ghost 3.4.1.
 2. Para ejecutar las pruebas en Cypress, se debe configurar el archivo [loginData.json](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/CypressE2E/cypress/fixtures/loginData.json), disponible en la carpeta de fixtures. Allí se debe configurar el puerto de ejecución de ghost y las credenciales para autenticarse.
