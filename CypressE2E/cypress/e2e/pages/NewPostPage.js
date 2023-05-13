@@ -18,7 +18,7 @@ class NewTagsPage {
   }
 
   publish() {
-    const publishButton = cy.get('div.ember-view.ember-basic-dropdown-trigger.gh-btn.gh-btn-outline.gh-publishmenu-trigger')
+    const publishButton = cy.get('div > span:nth-child(1) > svg:nth-child(1)')
     publishButton.click()
     cy.wait(800)
   }
@@ -30,8 +30,11 @@ class NewTagsPage {
   }
 
   comfirmPublish(){
-    const comfirmPublishButton = cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view')
+    const comfirmPublishButton = cy.get('button.gh-btn.gh-btn-black.gh-publishmenu-button.gh-btn-icon.ember-view')
     comfirmPublishButton.click()
+    cy.wait(800)
+    const PublishButton = cy.get('button.gh-btn.gh-btn-black.gh-btn-icon.ember-view')
+    PublishButton.click()
     cy.wait(500)
   }
 

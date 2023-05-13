@@ -5,7 +5,7 @@ class TagsPage {
   }
 
   createNewPost() {
-    const buttonNewTag = cy.get("a.ember-view.gh-btn.gh-btn-green");
+    const buttonNewTag = cy.get("a.ember-view.gh-btn.gh-btn-primary.view-actions-top-row");
     buttonNewTag.click();
   }
 }
