@@ -1,4 +1,7 @@
 # Semana 06 VRT
+
+### Video disponible en [YouTube](https://www.youtube.com/watch?v=sxUo42DRf5Q&t=1s)
+
 ### Funcionalidades presentes en las pruebas
 
 |Funcionalidad  | Tester |
