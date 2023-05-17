@@ -32,7 +32,8 @@ describe("Editar tag", () => {
     });
   });
 
-  // 3 escenarios:
+  // 4 escenarios:
+  // Editar nombre vacio
   // Editar nombre con 192 caracteres o mas (frontera +1 o mas)
   // Editar Slug con 192 carateres o mas (frontera +1 o mas)
   // Editar Descripcion con 501 carateres o mas (frontera +1 o mas)
@@ -66,19 +67,23 @@ describe("Editar tag", () => {
 
         // When: Selecciono el tag que acabo de crear
         TagsPage.editTagByName(tagName);
+        cy.wait(1000);
 
-        //When campos invalidos
-
+        //When lleno campos invalidos
         const tagNameInvalid = tag.tagName;
         const tagSlugInvalid = tag.tagSlug;
         const tagDescriptionInvalid = tag.tagDescription;
 
         const tagSize = tag.tagName_size;
-        const tagSlugSize = tag.tagName_size;
-        const tagDescriptionSize = tag.tagName_size;
+        const tagSlugSize = tag.tagSlug_size;
+        const tagDescriptionSize = tag.tagDescription_size;
 
         if (tagSize > 191) {
           NewTagPage.fillTagName(tagNameInvalid);
+        }
+
+        if (tagSize == 0) {
+          NewTagPage.fillTagName(" ");
         }
 
         if (tagSlugSize > 191) {
@@ -105,8 +110,8 @@ describe("Editar tag", () => {
 
         // Then: La descripcion no debio cambiar al valor invalido
         NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
-        NewTagPage.GetTagName().invoke("val").should("eq", descripcion);
-        NewTagPage.GetTagSlug().invoke("val").should("eq", descripcion);
+        NewTagPage.GetTagName().invoke("val").should("eq", tagName);
+        NewTagPage.GetTagSlug().invoke("val").should("eq", slug);
       });
     });
   });

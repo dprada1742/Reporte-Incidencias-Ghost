@@ -73,7 +73,7 @@ describe("Crear tag", () => {
   // Descripcion con 501 carateres o mas (frontera +1 o mas)
   let dynamicData = require('../../fixtures/Tag Tamaños Invalidos');
   dynamicData.forEach((tag) => {
-    it("Crea un nuevo con tamaños de campos inválidos", () => {
+    it("Crea un nuevo tag con tamaños de campos inválidos", () => {
       cy.fixture("loginData").then((data) => {
         const { baseUrl } = data;
 
@@ -122,12 +122,12 @@ describe("Crear tag", () => {
   });
 
   // 3 escenarios:
-  // Nombre con 191 caracteres o mas (frontera)
-  // Slug con 191 carateres o mas (frontera)
-  // Descripcion con 500 carateres o mas (frontera)
+  // Nombre con 191 caracteres o menos (frontera)
+  // Slug con 191 carateres o menos (frontera)
+  // Descripcion con 500 carateres o menos (frontera)
   let dynamicDataFrontera = require('../../fixtures/Tag Tamaños Frontera');
   dynamicDataFrontera.forEach((tag) => {
-    it("Crea un nuevo con tamaños de campos frontera", () => {
+    it("Crea un nuevo tag con tamaños de campos frontera", () => {
       cy.fixture("loginData").then((data) => {
         const { baseUrl } = data;
 
