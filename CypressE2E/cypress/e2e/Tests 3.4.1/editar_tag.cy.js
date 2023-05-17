@@ -8,6 +8,7 @@ import { faker } from "@faker-js/faker";
 let hasScreenshotBeenTaken = false;
 describe("Editar tag", () => {
   beforeEach(() => {
+    cy.viewport(1600, 900);
     cy.fixture("loginData").then((data) => {
       const { email, password, baseUrl } = data;
       // Given: ingreso a la pagina y hago login
@@ -28,6 +29,85 @@ describe("Editar tag", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
       Sidebar.signOut(baseUrl);
+    });
+  });
+
+  // 3 escenarios:
+  // Editar nombre con 192 caracteres o mas (frontera +1 o mas)
+  // Editar Slug con 192 carateres o mas (frontera +1 o mas)
+  // Editar Descripcion con 501 carateres o mas (frontera +1 o mas)
+  let dynamicData = require('../../fixtures/Tag Tamaños Invalidos');
+  dynamicData.forEach((tag) => {
+    it("Editar un nuevo tag con tamaños de campos inválidos", () => {
+      cy.fixture("loginData").then((data) => {
+        const { baseUrl } = data;
+
+        // When: Voy a la seccion de tags
+        TagsPage.visit(baseUrl);
+        cy.wait(1000);
+
+        // When: Oprimo el boton New Tag
+        TagsPage.createNewTag();
+
+        // When: Lleno todos los campos del formulario de new tag oprimo el boton save
+        const tagName = faker.lorem.word();
+        const descripcion = faker.lorem.sentence(10);
+        const slug = faker.lorem.slug();
+        NewTagPage.fillTagName(tagName);
+        NewTagPage.fillTagSlug(slug);
+        NewTagPage.fillTagDescription(descripcion);
+        NewTagPage.save();
+
+        cy.wait(1000);
+
+        // When: Me regreso a la seccion de Tags
+        TagsPage.visit(baseUrl);
+        cy.wait(1000);
+
+        // When: Selecciono el tag que acabo de crear
+        TagsPage.editTagByName(tagName);
+
+        //When campos invalidos
+
+        const tagNameInvalid = tag.tagName;
+        const tagSlugInvalid = tag.tagSlug;
+        const tagDescriptionInvalid = tag.tagDescription;
+
+        const tagSize = tag.tagName_size;
+        const tagSlugSize = tag.tagName_size;
+        const tagDescriptionSize = tag.tagName_size;
+
+        if (tagSize > 191) {
+          NewTagPage.fillTagName(tagNameInvalid);
+        }
+
+        if (tagSlugSize > 191) {
+          NewTagPage.fillTagSlug(tagSlugInvalid);
+        }
+
+        if (tagDescriptionSize > 500) {
+          NewTagPage.fillTagDescription(tagDescriptionInvalid);
+        }
+
+        NewTagPage.save();
+
+        // When: Me regreso a la seccion de Tags
+        TagsPage.visit(baseUrl);
+        cy.wait(1000);
+
+        // When: Oprimo el boton leave
+
+        NewTagPage.leave();
+        cy.wait(1000);
+
+        // When: Selecciono el tag que acabo de editar
+        TagsPage.editTagByName(tagName);
+
+        // Then: La descripcion no debio cambiar al valor invalido
+        NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
+        NewTagPage.GetTagName().invoke("val").should("eq", descripcion);
+        NewTagPage.GetTagSlug().invoke("val").should("eq", descripcion);
+      });
     });
   });
 
@@ -58,7 +138,7 @@ describe("Editar tag", () => {
       // When: Me regreso a la seccion de Tags
       TagsPage.visit(baseUrl);
       cy.wait(1000);
-      cy.screenshot("sc1_04_list_tags")     
+      cy.screenshot("sc1_04_list_tags")
 
       // When: Selecciono el tag que acabo de crear
       TagsPage.editTagByName(tagName);
@@ -113,7 +193,7 @@ describe("Editar tag", () => {
       TagsPage.visit(baseUrl);
       cy.wait(1000);
       cy.screenshot("sc2_04_list_tags")
-      
+
 
       // When: Selecciono el tag que acabo de crear
       TagsPage.editTagByName(tagName);
@@ -139,66 +219,6 @@ describe("Editar tag", () => {
     });
   });
 
-
-
-  it("Editar un nuevo tag con una descripcion con tamaño mayor a 500", () => {
-    cy.fixture("loginData").then((data) => {
-      const { baseUrl } = data;
-
-      // When: Voy a la seccion de tags
-      TagsPage.visit(baseUrl);
-      cy.wait(1000);
-      cy.screenshot("sc3_01_editar_tag")
-
-      // When: Oprimo el boton New Tag
-      TagsPage.createNewTag();
-      cy.screenshot("sc3_02_editar_tag")
-
-      // When: Lleno todos los campos del formulario de new tag oprimo el boton save
-      const tagName = faker.lorem.word();
-      const descripcion = faker.lorem.sentence(10);
-      NewTagPage.fillTagName(tagName);
-      NewTagPage.fillTagSlug(faker.lorem.slug());
-      NewTagPage.fillTagDescription(descripcion);
-      NewTagPage.save();
-      cy.screenshot("sc3_03_editar_tag")
-
-      cy.wait(1000);
-
-      // When: Me regreso a la seccion de Tags
-      TagsPage.visit(baseUrl);
-      cy.wait(1000);
-      cy.screenshot("sc3_04_editar_tag")
-
-      // When: Selecciono el tag que acabo de crear
-      TagsPage.editTagByName(tagName);
-      cy.screenshot("sc3_05_editar_tag")
-
-      //When edito la descripcion con valor invalido (mas de 500 caracteres) y guardo
-      NewTagPage.fillTagDescription(faker.lorem.sentence(100));
-      NewTagPage.save();
-      cy.screenshot("sc3_06_editar_tag")
-
-      // When: Me regreso a la seccion de Tags
-      TagsPage.visit(baseUrl);
-      cy.wait(1000);
-      cy.screenshot("sc3_07_editar_tag")
-
-      // When: Oprimo el boton leave
-    
-      NewTagPage.leave();
-      cy.wait(1000);
-      cy.screenshot("sc3_08_editar_tag")
-
-      // When: Selecciono el tag que acabo de editar
-      TagsPage.editTagByName(tagName);
-      cy.screenshot("sc3_09_editar_tag")
-
-      // Then: La descripcion no debio cambiar al valor invalido
-      NewTagPage.GetTagDescription().invoke("val").should("eq", descripcion);
-    });
-  });
-
   it("Crea un nuevo tag y lo edita con slug vacio", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
@@ -216,7 +236,7 @@ describe("Editar tag", () => {
       NewTagPage.fillTagName(tagName);
       NewTagPage.fillTagSlug(faker.lorem.slug());
       NewTagPage.fillTagDescription(faker.lorem.sentence(10));
-      
+
       cy.screenshot("sc4_03_fill_tag_data")
       NewTagPage.save();
 
@@ -231,7 +251,7 @@ describe("Editar tag", () => {
 
       // When: Limpio el valor de slug y oprimo el boton save
       NewTagPage.clearSlug();
-      
+
       cy.screenshot("sc4_06_delete_tag")
       NewTagPage.save();
 

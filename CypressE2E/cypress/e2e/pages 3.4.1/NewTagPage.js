@@ -11,7 +11,12 @@ class NewTagsPage {
 
   leave() {
     const buttonLeave = cy.get("button");
-    buttonLeave.contains("Leave").click({ force: true });
+    if (buttonLeave.contains("Leave").should("exist")) {
+      buttonLeave.contains("Leave").click({ force: true });
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getSlugField(){
@@ -47,6 +52,14 @@ class NewTagsPage {
 
   GetTagDescription() {
     return cy.get("#tag-description");
+  }
+
+  GetTagSlug() {
+    return cy.get("#tag-slug");
+  }
+
+  GetTagName() {
+    return cy.get("#tag-name");
   }
 
 }

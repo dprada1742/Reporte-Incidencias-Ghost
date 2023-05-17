@@ -17,7 +17,7 @@ class TagsPage {
   }
 
   editTagByName(name){
-    cy.get("h3").contains(name).click()
+    cy.get("h3", {force:true}).contains(name).click()
   }
 }
 
