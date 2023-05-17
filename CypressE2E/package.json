@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^12.11.0"
+    "cypress": "^12.11.0",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0"

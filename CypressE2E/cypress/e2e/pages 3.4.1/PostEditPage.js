@@ -11,12 +11,20 @@ class PostsPage {
     return cy.get('div#tag-input')
   }
 
+  getExcerptInput() {
+    return cy.get('#custom-excerpt')
+  }
+
   getTagValue() {
     return cy.get('li.tag-token')
   }
 
   getPostUrl(){
     return cy.get('.post-setting-slug')
+  }
+
+  getErrorBanner(){
+    return cy.get('div.gh-alert-content')
   }
 
   clickPublishOptions() {
@@ -35,12 +43,20 @@ class PostsPage {
     cy.get('button').contains('Meta data').click()
   }
 
+  clickTwitterButton() {
+    cy.get('button').contains('Twitter card').click()
+  }
+
   clickPostSettings() {
     cy.get('button.post-settings').click()
   }
 
   clickClosePostSettings() {
     cy.get('button.close.settings-menu-header-action').click()
+  }
+
+  clickBackSettings() {
+    cy.get('button.back.settings-menu-header-action').click()
   }
 
   clickBackToPosts() {
@@ -55,14 +71,19 @@ class PostsPage {
     cy.get('body').type('{ctrl}s');
   }
 
-  fillMetaTitle(){
-    const field = cy.get('div.meta-title')
+  fillMetaTitle(value){
+    const field = cy.get('#meta-title')
     field.click()
     field.type(value)
   }
 
+  fillTwitterTitle(value){
+    const field = cy.get('#twitter-title')
+    field.click()
+    field.type(value)
+  }
   fillMetaDescription(value){
-    const field = cy.get('div.meta-description')
+    const field = cy.get('#meta-description')
     field.click()
     field.type(value)
   }
