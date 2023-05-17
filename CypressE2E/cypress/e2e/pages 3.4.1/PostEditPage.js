@@ -31,6 +31,10 @@ class PostsPage {
     cy.get('button').contains('Publish and send').click()
   }
 
+  clickMetaButton() {
+    cy.get('button').contains('Meta data').click()
+  }
+
   clickPostSettings() {
     cy.get('button.post-settings').click()
   }
@@ -49,6 +53,18 @@ class PostsPage {
 
   saveChanges() {
     cy.get('body').type('{ctrl}s');
+  }
+
+  fillMetaTitle(){
+    const field = cy.get('div.meta-title')
+    field.click()
+    field.type(value)
+  }
+
+  fillMetaDescription(value){
+    const field = cy.get('div.meta-description')
+    field.click()
+    field.type(value)
   }
 }
 

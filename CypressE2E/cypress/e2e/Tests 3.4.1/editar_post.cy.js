@@ -3,10 +3,25 @@ import PostEditPage from "../pages 3.4.1/PostEditPage";
 import PostsPage from "../pages 3.4.1/PostsPage";
 import Sidebar from "../pages 3.4.1/Sidebar";
 
-import { CompanyModule, faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
+
+const fs = require('fs');
+
+const dynamicData = []
+fs.readFile('../../fixtures/Post Length.json', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  try {
+    dynamicData = JSON.parse(data);
+  } catch (err) {
+    console.error('Error parsing JSON:', err);
+  }
+});
 
 let hasScreenshotBeenTaken = false;
-
 describe("Editar Post", () => {
   beforeEach(() => {
     cy.fixture("loginData").then((data) => {
@@ -15,7 +30,7 @@ describe("Editar Post", () => {
       LoginPage.visit(baseUrl);
       LoginPage.fillEmail(email);
       LoginPage.fillPassword(password);
-      
+
       if (!hasScreenshotBeenTaken) {
         cy.screenshot("editar_post_login");
         hasScreenshotBeenTaken = true;
@@ -39,29 +54,29 @@ describe("Editar Post", () => {
       // When: creo un nuevo post
       PostsPage.visitNewPost(baseUrl);
       cy.screenshot("sc1_01_create_new_post")
-      
+
       let postName = faker.lorem.words(3);
       let titleField = PostEditPage.getPostTitle()
       titleField.clear()
       titleField.type(postName)
-      
+
       PostEditPage.getPostContent().click()
       cy.screenshot("sc1_02_add_data_post")
-      
+
       // And: edito el post que cree
       PostsPage.visit(baseUrl)
       cy.screenshot("sc1_03_list_posts")
       PostsPage.editPostByName(postName)
       cy.screenshot("sc1_04_edit_created_post")
-      
+
       let newPostName = faker.lorem.words(3);
       titleField = PostEditPage.getPostTitle()
       titleField.clear()
       titleField.type(newPostName)
-      
+
       PostEditPage.getPostContent().click()
       cy.screenshot("sc1_05_update_post_data")
-      
+
       // Then: Encuentro el tag que cree
       PostsPage.visit(baseUrl)
       cy.screenshot("sc1_06_list_posts_updated")
@@ -70,11 +85,49 @@ describe("Editar Post", () => {
       postsList.should('not.contain', postName)
     });
   });
-  
+
+  for (let index = 0; index < dynamicData.length; index++) {
+    it("Crear y editar el post superando longitudes máximas", () => {
+      cy.fixture("loginData").then((data) => {
+        const { baseUrl } = data;
+
+        // When: creo un nuevo post
+        PostsPage.visitNewPost(baseUrl);
+
+        let postName = faker.lorem.words(3);
+        let titleField = PostEditPage.getPostTitle()
+        titleField.clear()
+        titleField.type(postName)
+
+        PostEditPage.getPostContent().click()
+
+        // And: edito el post que cree
+        PostsPage.visit(baseUrl)
+        PostsPage.editPostByName(postName)
+
+        let newPostName = dynamicData[i].post_title;
+        titleField = PostEditPage.getPostTitle()
+        titleField.clear()
+        titleField.type(newPostName)
+
+        PostEditPage.clickPostSettings()
+        PostEditPage.clickMetaButton()
+        PostEditPage.fillMetaTitle(dynamicData[i].meta_title)
+        PostEditPage.fillMetaDescription(dynamicData[i].meta_description)
+
+        // Then: Encuentro el tag que cree
+        PostsPage.visit(baseUrl)
+        let postsList = PostsPage.getPostsList()
+        postsList.should('contain', newPostName)
+        postsList.should('not.contain', postName)
+      });
+    });
+  }
+
   it("Crear dos posts con nombre diferente y editarlos para que queden con el mismo nombre", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
-      
+
       // When: creo un nuevo post
       PostsPage.visitNewPost(baseUrl);
       cy.screenshot("sc2_01_create_new_post_1")
@@ -144,7 +197,7 @@ describe("Editar Post", () => {
       cy.screenshot("sc3_03_list_posts")
       PostsPage.editPostByName(postName)
       cy.screenshot("sc3_04_edit_created_post")
-      
+
       PostEditPage.clickPostSettings()
       cy.screenshot("sc3_05_edit_settings_post")
       let tagInput = PostEditPage.getTagInput()
@@ -168,7 +221,7 @@ describe("Editar Post", () => {
       cy.screenshot("sc3_09_edit_settings_post_after_edit")
       PostEditPage.clickPostSettings()
       cy.screenshot("sc3_10_view_tag")
-      
+
       // Then: Encuentro el tag que cree
       PostEditPage.getTagValue().should('contain', tagName)
     });
