@@ -9,6 +9,7 @@ let hasScreenshotBeenTaken = false;
 
 describe("Crear tag", () => {
   beforeEach(() => {
+    cy.viewport(1600, 900);
     cy.fixture("loginData").then((data) => {
       const { email, password, baseUrl } = data;
       // Given: ingreso a la pagina y hago login
@@ -29,6 +30,123 @@ describe("Crear tag", () => {
     cy.fixture("loginData").then((data) => {
       const { baseUrl } = data;
       Sidebar.signOut(baseUrl);
+    });
+  });
+
+  let naughtValuesName;
+  (async function () {
+    try {
+      const response = await fetch('https://my.api.mockaroo.com/tag_name_chars.json?key=b779c690');
+      naughtValuesName = await response.json();
+      naughtValuesName.tagName = naughtValuesName.tagName.replace("{", "").replace("}", "")
+    } catch (error) {
+      throw error
+    }
+  })().catch(e => { console.error(e) })
+
+   it("Crea un nuevo tag con nombre de caracteres especiales", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
+      const tagName = naughtValuesName.tagName;;
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(naughtValuesName.tagSlug);
+      NewTagPage.fillTagDescription(naughtValuesName.tagDescription);
+      NewTagPage.save();
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // Then: Encuentro el tag que cree
+      TagsPage.getTagList().contains(tagName).should("exist");
+    });
+  });
+
+  let naughtValuesSlug;
+  (async function () {
+    try {
+      const response = await fetch('https://my.api.mockaroo.com/tag_slug_chars.json?key=b779c690');
+      naughtValuesSlug = await response.json();
+      naughtValuesSlug.tagSlug = naughtValuesSlug.tagSlug.replace("{", "").replace("}", "")
+    } catch (error) {
+      throw error
+    }
+  })().catch(e => { console.error(e) })
+
+   it("Crea un nuevo tag con slug de caracteres especiales", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
+      const tagName = naughtValuesSlug.tagName;;
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(naughtValuesSlug.tagSlug);
+      NewTagPage.fillTagDescription(naughtValuesSlug.tagDescription);
+      NewTagPage.save();
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // Then: Encuentro el tag que cree
+      TagsPage.getTagList().contains(tagName).should("exist");
+    });
+  });
+
+  let naughtValuesDescription;
+  (async function () {
+    try {
+      const response = await fetch('https://my.api.mockaroo.com/tag_description_tags.json?key=b779c690');
+      naughtValuesDescription = await response.json();
+      naughtValuesDescription.tagDescription = naughtValuesDescription.tagDescription.replace("{", "").replace("}", "")
+    } catch (error) {
+      throw error
+    }
+  })().catch(e => { console.error(e) })
+
+   it("Crea un nuevo tag con descripción de caracteres especiales", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag y oprimo el boton save
+      const tagName = naughtValuesDescription.tagName;;
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(naughtValuesDescription.tagSlug);
+      NewTagPage.fillTagDescription(naughtValuesDescription.tagDescription);
+      NewTagPage.save();
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // Then: Encuentro el tag que cree
+      TagsPage.getTagList().contains(tagName).should("exist");
     });
   });
 

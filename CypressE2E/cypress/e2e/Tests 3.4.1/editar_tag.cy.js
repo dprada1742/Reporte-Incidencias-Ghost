@@ -32,6 +32,115 @@ describe("Editar tag", () => {
     });
   });
 
+  let naughtValuesName;
+  (async function () {
+    try {
+      const response = await fetch('https://my.api.mockaroo.com/tag_name_chars.json?key=b779c690');
+      naughtValuesName = await response.json();
+      naughtValuesName.tagName = naughtValuesName.tagName.replace("{", "").replace("}", "")
+    } catch (error) {
+      throw error
+    }
+  })().catch(e => { console.error(e) })
+
+  it("Editar tag nombre caracteres especiales", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag oprimo el boton save
+      const tagName = faker.lorem.word();
+      const descripcion = faker.lorem.sentence(10);
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(faker.lorem.slug());
+      NewTagPage.fillTagDescription(descripcion);
+      NewTagPage.save();
+
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // When: Selecciono el tag que acabo de crear
+      TagsPage.editTagByName(tagName);
+
+      const tagNameNew = naughtValuesName.tagName;;
+      NewTagPage.fillTagName(tagNameNew);
+      NewTagPage.save();
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // Then: Encuentro el tag que cree
+      TagsPage.getTagList().contains(tagNameNew).should("exist");
+    });
+  });
+
+  let naughtValuesDescription;
+  (async function () {
+    try {
+      const response = await fetch('https://my.api.mockaroo.com/tag_description_tags.json?key=b779c690');
+      naughtValuesDescription = await response.json();
+      naughtValuesDescription.tagDescription = naughtValuesDescription.tagDescription.replace("{", "").replace("}", "")
+    } catch (error) {
+      throw error
+    }
+  })().catch(e => { console.error(e) })
+
+  it("Editar tag con descripción de caracteres especiales", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+
+      // When: Voy a la seccion de tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // When: Oprimo el boton New Tag
+      TagsPage.createNewTag();
+
+      // When: Lleno todos los campos del formulario de new tag oprimo el boton save
+      const tagName = faker.lorem.word();
+      const descripcion = faker.lorem.sentence(10);
+      NewTagPage.fillTagName(tagName);
+      NewTagPage.fillTagSlug(faker.lorem.slug());
+      NewTagPage.fillTagDescription(descripcion);
+      NewTagPage.save();
+
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+      // When: Selecciono el tag que acabo de crear
+      TagsPage.editTagByName(tagName);
+
+      const tagDescriptionNew = naughtValuesDescription.tagDescription;;
+      NewTagPage.fillTagDescription(tagDescriptionNew);
+      NewTagPage.save();
+      cy.wait(1000);
+
+      // When: Me regreso a la seccion de Tags
+      TagsPage.visit(baseUrl);
+      cy.wait(1000);
+
+       // When: Selecciono el tag que acabo de editar
+       TagsPage.editTagByName(tagName);
+
+       // Then: La descripcion no debio cambiar al valor invalido
+       NewTagPage.GetTagDescription().invoke("val").should("eq", tagDescriptionNew);
+    });
+  });
+
   // 4 escenarios:
   // Editar nombre vacio
   // Editar nombre con 192 caracteres o mas (frontera +1 o mas)
