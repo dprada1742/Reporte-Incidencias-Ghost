@@ -1,3 +1,8 @@
+# Semana 07 Generación de datos
+
+La información de los escenarios creados para la semana 07 se encuentra en la [wiki](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki/escenarios-datos-generados)
+
+
 # Semana 06 VRT
 
 ### Video disponible en [YouTube](https://www.youtube.com/watch?v=sxUo42DRf5Q&t=1s)
