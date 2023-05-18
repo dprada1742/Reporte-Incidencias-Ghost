@@ -3,6 +3,10 @@ class PostEditPage {
         this.driver = driver;
     }
 
+    async getErrorBanner(){
+        return await this.driver.$('div.gh-alert-content')
+    }
+
     async getPostTitle() {
         return await this.driver.$('textarea.gh-editor-title.ember-text-area')
     }
@@ -13,6 +17,18 @@ class PostEditPage {
 
     async getTagInput() {
         return await this.driver.$('div#tag-input')
+    }
+
+    async getMetaTitle() {
+        return await this.driver.$('input#meta-title')
+    }
+
+    async getMetaDescription() {
+        return await this.driver.$('textarea.post-setting-meta-description')
+    }
+
+    async getTwitterTitle() {
+        return await this.driver.$('div#twitter-title')
     }
 
     async getTagValue() {
@@ -29,6 +45,24 @@ class PostEditPage {
 
     async clickPublishButton() {
         await this.driver.$("button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon").click()
+    }
+
+    async clickMetaDataButton() {
+        const span = await this.driver.$('//span[text()="Extra content for search engines"]');
+        const button = await span.parentElement();
+        await button.click();
+    }
+
+    async clickTwitterDataButton() {
+        const span = await this.driver.$('//span[text()="Customise structured data for Twitter"]');
+        const button = await span.parentElement();
+        await button.click();
+    }
+
+    async clickBackButton() {
+        const span = await this.driver.$('//span[text()="Back"]');
+        const button = await span.parentElement();
+        await button.click();
     }
 
     async clickConfirmPublishButton() {

@@ -86,3 +86,32 @@ Feature: Editar Post
         Then the new URL "$$name_8" must be accesible
         And I wait for 1 seconds
         And contains the post "$$name_7"
+
+    @user5 @web
+    Scenario: Crear y editar el post superando longitudes máximas
+        Given I log into ghost
+        And I wait for 2 seconds
+        When I go to new post page with step id of "edit_post/sc5_01"
+        And I wait for 1 seconds
+        And I fill the post title with "$name_1" with step id of "edit_post/sc5_02"
+        And I click in the post content
+        And I wait for 1 seconds
+        And I navigate to the posts page with step id of "edit_post/sc5_03"
+        And I wait for 1 seconds
+        And I edit the post with name "$$name_1" with step id of "edit_post/sc5_04"
+        And I wait for 1 seconds
+        And I fill the post title with "<post>" with step id of "edit_post/sc5_05"
+        And I click in the post content
+        And I wait for 1 seconds
+        And I add a new meta title "<meta_title>" to the post
+        And I add a new meta description "<meta_desc>" to the post
+        And I add a new twitter title "<twitter_title>" to the post
+        And I save the post
+        Then an error gets generated
+
+    Examples:
+        | post | meta_title | meta_desc | twitter_title |
+        | integerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerintegerinte | integerintegerintegerintegerintegerinteger | integerintegerintegerintegerintegerinteger | integerintegerintegerintegerintegerinteger |
+        | donecdonecdonecdonecdonecdonecdonecdonecdonec | donecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecd | donecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonec | donecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonecdonec |
+        | congueconguecongueconguecongu | congueconguecongueconguecongu | congueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueconguecongueconguecongucongueco | congueconguecongueconguecongu |
+        | consequatconsequatconsequatconsequat | consequatconsequatconsequatconsequatconsequatconsequat | consequatconsequatconsequatconsequatconsequatconsequatconsequat | consequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatconsequatcons |
