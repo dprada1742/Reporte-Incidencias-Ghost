@@ -37,7 +37,7 @@ describe("Editar tag", () => {
     try {
       const response = await fetch('https://my.api.mockaroo.com/tag_name_chars.json?key=b779c690');
       naughtValuesName = await response.json();
-      naughtValuesName.tagName = naughtValuesName.tagName.replace("{", "").replace("}", "")
+      naughtValuesName.tagName = naughtValuesName.tagName.replaceAll("{", "").replaceAll("}", "")
     } catch (error) {
       throw error
     }
@@ -90,7 +90,7 @@ describe("Editar tag", () => {
     try {
       const response = await fetch('https://my.api.mockaroo.com/tag_description_tags.json?key=b779c690');
       naughtValuesDescription = await response.json();
-      naughtValuesDescription.tagDescription = naughtValuesDescription.tagDescription.replace("{", "").replace("}", "")
+      naughtValuesDescription.tagDescription = naughtValuesDescription.tagDescription.replaceAll("{", "").replaceAll("}", "")
     } catch (error) {
       throw error
     }

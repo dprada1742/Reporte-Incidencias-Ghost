@@ -131,6 +131,13 @@ Then('I should validate the slug is not empty', async function () {
   expect(slugValue).not.to.be.empty;
 });
 
+When('I fill the new tag fields {kraken-string} {kraken-string} {kraken-string}', async function (name, slug, description) {
+  let newTagPage = new NewTagsPage(this.driver);
+  await newTagPage.fillTagName(name);
+  await newTagPage.fillTagSlug(slug);
+  await newTagPage.fillTagDescription(description);
+});
+
 function generateRandomString(length) {
   let result = '';
   for (let i = 0; i < length; i++) {
