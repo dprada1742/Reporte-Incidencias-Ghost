@@ -51,7 +51,7 @@ Feature: Crear Tag
         And I save the tag with step id of "crear_tag/sc4_04"
         And I wait for 1 seconds
         And I go to the the Tag section with step id of "crear_tag/sc4_05"
-        Then I should have a tags with the name <tagName> // ??????
+        Then I should have a tags with the name <tagName>
 
     Examples: 
     |tagName|tagSlug|tagDescription|
@@ -71,7 +71,7 @@ Feature: Crear Tag
         And I go to the the Tag section with step id of "crear_tag/sc4_04"
         And I wait for 2 seconds
         And I press the button Leave with step id of "crear_tag/sc4_05"
-        Then No tag should be created <tagNameInvalid> // ??????
+        Then No tag should be created <tagNameInvalid>
 
     Examples: 
     |tagNameInvalid|tagSlugInvalid|tagDescriptionInvalid|
