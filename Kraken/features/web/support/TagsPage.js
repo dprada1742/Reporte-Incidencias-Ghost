@@ -10,7 +10,7 @@ class TagsPage {
   }
 
   async createNewTag() {
-    const newTagButton = await this.driver.$('a*=New tag');
+    const newTagButton = await this.driver.$('//a[contains(span,"New tag")]');
     await newTagButton.click();
   }
 
