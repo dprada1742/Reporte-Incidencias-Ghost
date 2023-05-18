@@ -99,7 +99,7 @@ Then('I should have a tags with the name {kraken-string}', async function (tagNa
   const values = await Promise.all(tagList.map(async (element) => {
     return await element.getText()
   }));
-  expect(values.filter(element => element === tagName)).to.have.lengthOf.at.least(1);
+  expect(values.filter(element => element == tagName)).to.have.lengthOf.at.least(1);
 });
 
 Then('No tag should be created {kraken-string}', async function (tagName) {
