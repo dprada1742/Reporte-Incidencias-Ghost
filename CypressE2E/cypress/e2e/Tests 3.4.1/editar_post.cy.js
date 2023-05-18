@@ -285,12 +285,13 @@ describe("Editar Post", () => {
   //   });
   // });
 
-  let naughtValues = new Array;
+  let naughtyPostValue;
 
   (async function () {
     try {
       const response = await fetch('https://my.api.mockaroo.com/post_special_characters.json?key=8daae1b0');
-      naughtValues = await response.json();
+      naughtyPostValue = await response.json();
+      naughtyPostValue.post_title = naughtyPostValue.post_title.replace("{", "").replace("}", "")
     } catch (error) {
       throw error
     }
@@ -316,7 +317,7 @@ describe("Editar Post", () => {
 
       PostsPage.editPostByName(postName)
 
-      let newPostName = naughtValues.post_title;
+      let newPostName = naughtyPostValue.post_title;
       titleField = PostEditPage.getPostTitle()
       titleField.clear()
       titleField.type(newPostName)
@@ -325,18 +326,151 @@ describe("Editar Post", () => {
       PostEditPage.clickPostSettings()
       let tagInput = PostEditPage.getTagInput()
       tagInput.click()
-      tagInput.type(`${naughtValues.post_tag}{enter}`)
+      tagInput.type(`${naughtyPostValue.post_tag}{enter}`)
 
+      // And: edito el excerpt 
       let excerptInput = PostEditPage.getExcerptInput()
       excerptInput.click()
-      excerptInput.type(naughtValues.post_excerpt)
+      excerptInput.type(naughtyPostValue.post_excerpt)
 
       PostEditPage.clickClosePostSettings()
       PostEditPage.saveChanges()
       cy.wait(1000)
 
-      // // Then: Genera error
-      // PostEditPage.getErrorBanner().should('exist')
+      let postsList = PostsPage.getPostsList()
+      postsList.should('contain', naughtyPostValue.post_title)
+    })
+  });
+
+  let naughtyTagValue;
+
+  (async function () {
+    try {
+      const response = await fetch('https://my.api.mockaroo.com/post_tag_special_characters.json?key=8daae1b0');
+      naughtyTagValue = await response.json();
+      naughtyTagValue.post_tag = naughtyTagValue.post_tag.replace("{", "").replace("}", "")
+    } catch (error) {
+      throw error
+    }
+  })().catch(e => { console.error(e) })
+
+  it("Crear y editar un post con un nombre con caracteres especiales", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+      // When: creo un nuevo post
+      PostsPage.visitNewPost(baseUrl);
+
+      let postName = faker.lorem.words(3);
+      let titleField = PostEditPage.getPostTitle()
+      titleField.clear()
+      titleField.type(postName)
+
+      PostEditPage.getPostContent().click()
+      PostEditPage.saveChanges()
+      cy.wait(1000)
+
+      // And: edito el post que cree
+      PostsPage.visit(baseUrl)
+
+      PostsPage.editPostByName(postName)
+
+      let newPostName = naughtyTagValue.post_title;
+      titleField = PostEditPage.getPostTitle()
+      titleField.clear()
+      titleField.type(newPostName)
+
+      // And: edito el tag 
+      PostEditPage.clickPostSettings()
+      let tagInput = PostEditPage.getTagInput()
+      tagInput.click()
+      tagInput.type(`${naughtyTagValue.post_tag}{enter}`)
+
+      // And: edito el excerpt 
+      let excerptInput = PostEditPage.getExcerptInput()
+      excerptInput.click()
+      excerptInput.type(naughtyTagValue.post_excerpt)
+
+      PostEditPage.clickClosePostSettings()
+      PostEditPage.saveChanges()
+      cy.wait(1000)
+
+      // And: edito el post que cree
+      PostsPage.visit(baseUrl)
+
+      PostsPage.editPostByName(naughtyTagValue.post_title)
+
+      // Then: Validar tag and excerpt
+
+      PostEditPage.clickPostSettings()
+      PostEditPage.getTagInput().should('contain', naughtyTagValue.post_tag);
+    })
+  });
+
+  let naughtyExceptValue;
+
+  (async function () {
+    try {
+      const response = await fetch('https://my.api.mockaroo.com/post_excerpt_special_characters.json?key=8daae1b0');
+      naughtyExceptValue = await response.json();
+      naughtyExceptValue.post_excerpt = naughtyPostValue.post_excerpt.replace("{", "").replace("}", "")
+    } catch (error) {
+      throw error
+    }
+  })().catch(e => { console.error(e) })
+
+  it("Crear y editar un post con un nombre con caracteres especiales", () => {
+    cy.fixture("loginData").then((data) => {
+      const { baseUrl } = data;
+      // When: creo un nuevo post
+      PostsPage.visitNewPost(baseUrl);
+
+      let postName = faker.lorem.words(3);
+      let titleField = PostEditPage.getPostTitle()
+      titleField.clear()
+      titleField.type(postName)
+
+      PostEditPage.getPostContent().click()
+      PostEditPage.saveChanges()
+      cy.wait(1000)
+
+      // And: edito el post que cree
+      PostsPage.visit(baseUrl)
+
+      PostsPage.editPostByName(postName)
+
+      let newPostName = naughtyExceptValue.post_title;
+      titleField = PostEditPage.getPostTitle()
+      titleField.clear()
+      titleField.type(newPostName)
+
+      // And: edito el tag 
+      PostEditPage.clickPostSettings()
+      let tagInput = PostEditPage.getTagInput()
+      tagInput.click()
+      tagInput.type(`${naughtyExceptValue.post_tag}{enter}`)
+
+      // And: edito el excerpt 
+      let excerptInput = PostEditPage.getExcerptInput()
+      excerptInput.click()
+      excerptInput.type(naughtyExceptValue.post_excerpt)
+
+      PostEditPage.clickClosePostSettings()
+      PostEditPage.saveChanges()
+      cy.wait(1000)
+
+      // And: edito el post que cree
+      PostsPage.visit(baseUrl)
+
+      PostsPage.editPostByName(naughtyExceptValue.post_title)
+
+      // Then: Validar tag and excerpt
+
+      PostEditPage.clickPostSettings()
+      PostEditPage.getExcerptInput().invoke('val')
+        .then((value) => {
+          cy.log(value)
+          expect(value).to.equal(naughtyExceptValue.post_excerpt);
+        });
     })
   });
 });
