@@ -11,6 +11,10 @@ class PostsPage {
     return cy.get('div#tag-input')
   }
 
+  getAutorInput() {
+    return cy.get('div#author-list')
+  }
+
   getExcerptInput() {
     return cy.get('#custom-excerpt')
   }

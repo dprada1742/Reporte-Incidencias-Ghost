@@ -13,7 +13,7 @@ class PostsPage {
   }
 
   getPostsList(){
-    return cy.get(".gh-content-entry-title")
+    return cy.get(".gh-content-entry-title", { force: true })
   }
 }
 
