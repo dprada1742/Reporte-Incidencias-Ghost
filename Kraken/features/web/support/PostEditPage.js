@@ -11,12 +11,20 @@ class PostEditPage {
         return await this.driver.$('textarea.gh-editor-title.ember-text-area')
     }
 
+    async getPostTitleValue() {
+        return await this.driver.$('textarea.gh-editor-title.ember-text-area').getValue()
+    }
+
     async getPostContent() {
         return await this.driver.$("div.koenig-editor__editor-wrapper")
     }
 
     async getTagInput() {
         return await this.driver.$('div#tag-input')
+    }
+
+    async getExcerptInput() {
+        return await this.driver.$('#custom-excerpt')
     }
 
     async getMetaTitle() {
@@ -35,8 +43,16 @@ class PostEditPage {
         return await this.driver.$('li.tag-token').getText()
     }
 
+    async getExcerptValue(){
+        return await this.driver.$('#custom-excerpt').getText()
+    }
+
     async getPostUrl() {
         return await this.driver.$('.post-setting-slug')
+    }
+
+    async getPostUrlValue() {
+        return await this.driver.$('.post-setting-slug').getValue()
     }
 
     async clickPublishOptions() {
