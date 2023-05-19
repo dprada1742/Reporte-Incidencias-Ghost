@@ -9,11 +9,11 @@ class PostsPage {
   }
 
   editPostByName(name){
-    cy.get("h3").contains(name).click()
+    cy.get(".gh-content-entry-title", { force: true }).contains(name).click();
   }
 
   getPostsList(){
-    return cy.get(".gh-content-entry-title")
+    return cy.get(".gh-content-entry-title", { force: true })
   }
 }
 

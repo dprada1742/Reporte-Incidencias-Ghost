@@ -3,8 +3,16 @@ class PostEditPage {
         this.driver = driver;
     }
 
+    async getErrorBanner(){
+        return await this.driver.$('div.gh-alert-content')
+    }
+
     async getPostTitle() {
         return await this.driver.$('textarea.gh-editor-title.ember-text-area')
+    }
+
+    async getPostTitleValue() {
+        return await this.driver.$('textarea.gh-editor-title.ember-text-area').getValue()
     }
 
     async getPostContent() {
@@ -15,12 +23,36 @@ class PostEditPage {
         return await this.driver.$('div#tag-input')
     }
 
+    async getExcerptInput() {
+        return await this.driver.$('#custom-excerpt')
+    }
+
+    async getMetaTitle() {
+        return await this.driver.$('input#meta-title')
+    }
+
+    async getMetaDescription() {
+        return await this.driver.$('textarea.post-setting-meta-description')
+    }
+
+    async getTwitterTitle() {
+        return await this.driver.$('div#twitter-title')
+    }
+
     async getTagValue() {
         return await this.driver.$('li.tag-token').getText()
     }
 
+    async getExcerptValue(){
+        return await this.driver.$('#custom-excerpt').getText()
+    }
+
     async getPostUrl() {
         return await this.driver.$('.post-setting-slug')
+    }
+
+    async getPostUrlValue() {
+        return await this.driver.$('.post-setting-slug').getValue()
     }
 
     async clickPublishOptions() {
@@ -29,6 +61,24 @@ class PostEditPage {
 
     async clickPublishButton() {
         await this.driver.$("button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon").click()
+    }
+
+    async clickMetaDataButton() {
+        const span = await this.driver.$('//span[text()="Extra content for search engines"]');
+        const button = await span.parentElement();
+        await button.click();
+    }
+
+    async clickTwitterDataButton() {
+        const span = await this.driver.$('//span[text()="Customise structured data for Twitter"]');
+        const button = await span.parentElement();
+        await button.click();
+    }
+
+    async clickBackButton() {
+        const span = await this.driver.$('//span[text()="Back"]');
+        const button = await span.parentElement();
+        await button.click();
     }
 
     async clickConfirmPublishButton() {
