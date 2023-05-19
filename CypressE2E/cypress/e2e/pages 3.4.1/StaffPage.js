@@ -11,24 +11,26 @@ class StaffPage {
   }
 
   fillOldPassword(value) {
-    //cy.get("main > section > header").invoke('addclass','hidden');
-    const field = cy.get('#user-password-old').type(value)    
-    cy.wait(300)
-    return this
+    if (value){
+      const field = cy.get('#user-password-old').type(value)    
+      cy.wait(300)
+      return this
+    }
+      
   }
 
   fillNewPassword(value) {
     //cy.get("main > section > header").invoke('addclass','hidden');
-    const field = cy.get('#user-password-new').type(value)    
+    if (value){const field = cy.get('#user-password-new').type(value)    
     cy.wait(200)
-    return this
+    return this}
   }
 
   fillVerificationPassword(value) {
     //cy.get("main > section > header").invoke('addclass','hidden');
-    const field = cy.get('#user-new-password-verification').type(value)
+    if (value){const field = cy.get('#user-new-password-verification').type(value)
     cy.wait(200)  
-    return this
+    return this}
   }
 
   save() {
@@ -44,6 +46,16 @@ class StaffPage {
 
   assertErrorMessage(message) {
     const messageElement = cy.get('p.response')
+    messageElement.contains(message).should('be.visible')
+  }
+
+  assertErrorPassword(message) {
+    const messageElement = cy.get('div.gh-alert-content')
+    messageElement.contains(message).should('be.visible')
+  }
+
+  assertRetry(message) {
+    const messageElement = cy.get('button.gh-btn.gh-btn-icon.button-change-password.gh-btn-red.ember-view > span')
     messageElement.contains(message).should('be.visible')
   }
 
