@@ -7,11 +7,14 @@ const expect = require('chai').expect;
 
 const baseUrl = "http://localhost:2368/";
 
-When('I fill the post title with {kraken-string} with step id of {string}', async function (postTitle, stepname) {
+When('I fill the post title with {string} with step id of {string}', async function (postTitle, stepname) {
   let postEdit = new PostEditPage(this.driver)
-  let postTitleElement = await postEdit.getPostTitle()
-  await postTitleElement.setValue(postTitle)
-  await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
+  if (postTitle){
+    let postTitleElement = await postEdit.getPostTitle()
+    await postTitleElement.setValue(postTitle)
+    await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
+  }
+  
 });
 
 When('I click in the post content', async function () {
@@ -19,6 +22,15 @@ When('I click in the post content', async function () {
   let postContent = await postEdit.getPostContent()
   postContent.click()
   await new Promise(r => setTimeout(r, 300));
+});
+
+When('I fill the post content with {string}', async function (content) {
+  let postEdit = new PostEditPage(this.driver)
+  if (content){
+    let postContent = await postEdit.getPostContent()
+    postContent.setValue(content)
+  }
+  
 });
 
 When('I add a new tag {kraken-string} to the post with step id of {string}', async function (tagName, stepname) {
