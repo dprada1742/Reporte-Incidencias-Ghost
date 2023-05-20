@@ -49,6 +49,12 @@ class TagsPage {
     return expect(elementText).to.equal(message)
   }
 
+  async AssertWrongPass(message) {
+    const messageElement = await this.driver.$('article.gh-alert.gh-alert-red.ember-view');
+    const elementText = await messageElement.getText()
+    return expect(elementText).to.equal(message)
+  }
+
   
 
   

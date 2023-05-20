@@ -12,15 +12,20 @@ const baseUrl = "http://localhost:2368/";
   });
 
   When('I fill the old password with {string} with step id of {string}', async function (text, stepname) {
-    let staffPage = new StaffPage(this.driver);   
-    await staffPage.fillOldPassword(text);
-    await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
+    let staffPage = new StaffPage(this.driver);
+    if (text){
+      await staffPage.fillOldPassword(text);
+      await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
+    };    
   });
 
   When('I fill the new password with {string} with step id of {string}', async function (text, stepname) {
-    let staffPage = new StaffPage(this.driver);   
-    await staffPage.fillNewPassword(text);
-    await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
+    let staffPage = new StaffPage(this.driver);
+    if (text){
+      await staffPage.fillNewPassword(text);
+      await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
+    } 
+    
   });
 
   When('I click on Change Password', async function () {
@@ -39,6 +44,13 @@ const baseUrl = "http://localhost:2368/";
     await staffPage.AssertError(text);
     await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
   });
+
+  Then('Error element must says {string} with step id of {string}', async function (text, stepname) {
+    let staffPage = new StaffPage(this.driver);
+    await staffPage.AssertWrongPass(text);
+    await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
+  });
+
 
 
 

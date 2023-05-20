@@ -1,6 +1,6 @@
 Feature: Editar Contraseña
 
-    @user5 @web
+    @user1 @web
     Scenario: Editar Contraseña válida
         Given I log into ghost
         And I wait for 1 seconds        
@@ -12,7 +12,7 @@ Feature: Editar Contraseña
         And I wait for 1 seconds
         Then It must says "Password updated" with step id of "edit_password/sc1_04"
     
-    @user6 @web
+    @user2 @web
     Scenario: Editar Contraseña muy corta
         Given I log into ghost
         And I wait for 1 seconds        
@@ -24,7 +24,7 @@ Feature: Editar Contraseña
         And I wait for 2 seconds
         Then Error must says "Password must be at least 10 characters long" with step id of "edit_password/sc2_04"
     
-    @user7 @web
+    @user3 @web
     Scenario: Editar Contraseña en blanco
         Given I log into ghost
         And I wait for 1 seconds        
@@ -36,7 +36,7 @@ Feature: Editar Contraseña
         And I wait for 2 seconds
         Then Error must says "Sorry, passwords can't be blank" with step id of "edit_password/sc3_04"
     
-    @user8 @web
+    @user4 @web
     Scenario: Editar Contraseña insegura
         Given I log into ghost
         And I wait for 3 seconds        
