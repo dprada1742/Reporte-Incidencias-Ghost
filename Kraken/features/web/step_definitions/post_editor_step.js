@@ -13,8 +13,7 @@ When('I fill the post title with {string} with step id of {string}', async funct
     let postTitleElement = await postEdit.getPostTitle()
     await postTitleElement.setValue(postTitle)
     await this.driver.saveScreenshot(`./newReports/${stepname}.png`)
-  }
-  
+  }  
 });
 
 When('I click in the post content', async function () {
