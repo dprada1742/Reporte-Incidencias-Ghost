@@ -1,7 +1,8 @@
 # Semana 07 Generación de datos
 
 La información de los escenarios creados para la semana 07 se encuentra en la [wiki](https://github.com/dprada1742/Reporte-Incidencias-Ghost/wiki/escenarios-datos-generados)
-
+<br>Los pasos para ejecutar las pruebas se mantienen iguales a los de la semana 6. 
+<br><br>Recomendación: Para las pruebas apriori en Kraken, es necesario comentar las rows que no se quieren probar en la tabla de Examples. Esto debido a un error que presenta Kraken.
 
 # Semana 06 VRT
 
