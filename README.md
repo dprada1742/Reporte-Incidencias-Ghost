@@ -70,6 +70,11 @@ En este proyecto se encuentran los 40 escenarios actualizados con la funcionalid
 
 *Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente. Se proporciona una carpeta para moves los features temporalmente:* temp_avoidFeatureRun
 
+*Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por eso en la tabla de datos para cada escenarios, secomentaron las filas subyacentes a la primera, para correr todos los escenarios con todas los datos de la tabla debe quitar los comentarios, pero esto hace que se corran todos en paralelo y puede producir errores.
+
+![imagen](https://github.com/dprada1742/Reporte-Incidencias-Ghost/assets/124740068/22161ba1-00bf-4d0a-9a8d-7f5d7486098a)
+
+
 ## Ejecución VRT
 
 Todos los archivos necesarios para ejecutar las pruebas de regresión visual se encuentran dentro de la carpeta VTR_Cypress. Vale la pena destacar que dentro de esta carpeta se encuentran las subcarpetas "ghost 3.4.1" y "ghost 4.44". Estas a su vez contienen subcarpetas que indican las funcionalidades y posteriormente el nombre de los escenarios sobre los cuales se van a correr las pruebas de regresión visual.
