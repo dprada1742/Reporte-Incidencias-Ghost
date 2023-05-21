@@ -70,9 +70,11 @@ En este proyecto se encuentran los 40 escenarios actualizados con la funcionalid
 
 *Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por esto se deben copiar los features que no se quieran ejecutar en una ubicación diferente a la que se encuentran actualmente. Se proporciona una carpeta para moves los features temporalmente:* temp_avoidFeatureRun
 
-*Debido a limitaciones de Kraken, no es posible ejecutar todos los features en una única ejecución, por eso en la tabla de datos para cada escenarios, secomentaron las filas subyacentes a la primera, para correr todos los escenarios con todas los datos de la tabla debe quitar los comentarios, pero esto hace que se corran todos en paralelo y puede producir errores.
+*Debido a limitaciones de Kraken, no es posible ejecutar todos los escenarios y todas las variaciones en una única ejecución, por eso en la tabla de datos Example para cada escenarios, se comentaron las filas subyacentes a la primera, para correr todos los escenarios con todas los datos de la tabla debe quitar los comentarios, pero esto hace que se corran todos en paralelo y puede producir errores.
 
-![imagen](https://github.com/dprada1742/Reporte-Incidencias-Ghost/assets/124740068/22161ba1-00bf-4d0a-9a8d-7f5d7486098a)
+Como se evidencia en la siguiente imagen.
+![imagen](https://github.com/dprada1742/Reporte-Incidencias-Ghost/assets/124740068/5b49589e-8c00-4ffc-b0be-1bcbaad67a1c)
+
 
 
 ## Ejecución VRT
