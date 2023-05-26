@@ -1,6 +1,7 @@
 # Estrategia de pruebas aplicación Ghost
 
 A continuación se detalla la estrategia de pruebas realizada sobre la aplicación Ghost 3.41.1 durantes las últimas 8 semanas.
+<br>En [este enlace](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/Inventario%20de%20pruebas%20exploratorias.xlsx) se encuentra el inventario de pruebas exploratorias, disponible en este repositorio.
 
 ## Funcionalidades bajo prueba
 
