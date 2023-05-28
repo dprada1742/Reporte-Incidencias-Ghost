@@ -3,7 +3,7 @@
 A continuación se detalla la estrategia de pruebas realizada sobre la aplicación Ghost 3.41.1 durantes las últimas 8 semanas.
 <br>En [este enlace](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/Inventario%20de%20pruebas%20exploratorias.xlsx) se encuentra el inventario de pruebas exploratorias, disponible en este repositorio.
 <br>En [este enlace](https://github.com/dprada1742/Reporte-Incidencias-Ghost/blob/main/Estrategia%20de%20pruebas.pdf) se encuentra la estrategia de pruebas, disponible en este repositorio.
-<br>El video se encuentra en el siguiente enlace (aún no disponible. Fecha de entrega 28/05)
+<br>El video se encuentra en el siguiente enlace [YouTube](https://youtu.be/Ieo0XfD3I5I)
 ## Funcionalidades bajo prueba
 
 Para las siguientes funcionalidades se realizaron pruebas de exploración, automatizadas (reconocimiento y API de automatización) y de regresión visual (comparadas con la versión 4.44)
